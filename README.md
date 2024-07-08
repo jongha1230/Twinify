@@ -34,3 +34,49 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```
+twinify
+├─ src
+│  ├─ app
+│  │  ├─ (providers)
+│  │  │  ├─ (auth)
+│  │  │  │  ├─ layout.tsx
+│  │  │  │  ├─ login
+│  │  │  │  │  └─ page.tsx
+│  │  │  │  └─ signup
+│  │  │  │     └─ page.tsx
+│  │  │  └─ (root)
+│  │  │     ├─ (music)
+│  │  │     │  ├─ layout.tsx
+│  │  │     │  ├─ page.tsx
+│  │  │     │  ├─ search
+│  │  │     │  │  └─ page.tsx
+│  │  │     │  └─ [id]
+│  │  │     │     └─ page.tsx
+│  │  │     ├─ (my)
+│  │  │     │  └─ mypage
+│  │  │     │     └─ page.tsx
+│  │  │     └─ layout.tsx
+│  │  ├─ api
+│  │  │  └─ music
+│  │  │     ├─ route.ts
+│  │  │     └─ [id]
+│  │  │        └─ route.ts
+│  │  ├─ favicon.ico
+│  │  ├─ globals.css
+│  │  └─ layout.tsx
+│  ├─ components
+│  │  └─ Button
+│  │     ├─ Button.tsx
+│  │     └─ index.ts
+│  ├─ contexts
+│  ├─ Page
+│  │  ├─ index.ts
+│  │  └─ Page.tsx
+│  └─ types
+├─ tailwind.config.ts
+├─ tsconfig.json
+└─ yarn.lock
+
+```
