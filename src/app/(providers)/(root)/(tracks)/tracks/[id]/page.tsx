@@ -2,8 +2,7 @@
 import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { FaRegCommentAlt } from "react-icons/fa";
-import { GoHeart, GoHeartFill } from "react-icons/go";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { IoEyeSharp } from "react-icons/io5";
 import CommentPage from "./_comment/page";
 
@@ -11,7 +10,7 @@ function MusicDetailPage() {
   const [clickLike, setClickLike] = useState<boolean>(false);
   //가사 더미 데이터
   const [lyric, setlyric] = useState<string>(
-    "ㅂㅁㄴㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ"
+    "ㅂㅁㄴㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ",
   );
   //더보기 토글 스위치
   const [isShowMore, setIsShowMore] = useState<boolean>(false);
@@ -33,15 +32,13 @@ function MusicDetailPage() {
   }, [isShowMore]);
 
   return (
-    <main className="fixed  bg-black top-0 bottom-0 left-0 right-0 flex flex-col justify-center items-center ">
+    <main className="flex flex-col justify-center items-center mt-16">
       <article className="mb-10  w-4/5">
         <section className="flex mb-16">
           {/* 앨범 사진, 제목, 가수, 좋아요, 댓글 수, 조회수? */}
           <div className="mr-5">
             <Image
-              src={
-                "https://i.namu.wiki/i/GYK2rhlm0pu6QSTovr5xT7u0upAls3gl-hY9FhqL36K9b0W9xk_J3a90ZJgg6H6_FR8hILz95lszaKCqHLqIF7WW_ktTIehCGSrT13t9GQM-PVhcvIbcXoi_wEBLdbdz1O1CwhHHdk0uLUm4yZEbZw.webp"
-              }
+              src={"https://i.namu.wiki/i/GYK2rhlm0pu6QSTovr5xT7u0upAls3gl-hY9FhqL36K9b0W9xk_J3a90ZJgg6H6_FR8hILz95lszaKCqHLqIF7WW_ktTIehCGSrT13t9GQM-PVhcvIbcXoi_wEBLdbdz1O1CwhHHdk0uLUm4yZEbZw.webp"}
               width={200}
               height={200}
               alt="album"
@@ -52,15 +49,8 @@ function MusicDetailPage() {
             <h1 className="text-white text-5xl font-bold ">How Sweet</h1>
             <h4 className="text-[#B7B7B7] text-2xl">NewJeans</h4>
             <div className="flex items-center w-4/5 justify-between whitespace-pre text-lg">
-              <span
-                className="flex items-center cursor-pointer"
-                onClick={() => setClickLike(!clickLike)}
-              >
-                {clickLike ? (
-                  <GoHeartFill className="size-7" />
-                ) : (
-                  <GoHeart className="size-7" />
-                )}
+              <span className="flex items-center cursor-pointer" onClick={() => setClickLike(!clickLike)}>
+                {clickLike ? <IoMdHeart className="size-7" /> : <IoMdHeartEmpty className="size-7" />}
                 500
               </span>
               <span className="flex items-center">
