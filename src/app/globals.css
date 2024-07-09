@@ -2,5 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply text-white bg-black/85;
+}
+
 @layer utilities {
 }
