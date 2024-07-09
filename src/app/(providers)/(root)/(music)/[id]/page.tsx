@@ -5,6 +5,7 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoEyeSharp } from "react-icons/io5";
+import CommentPage from "./_comment/page";
 
 function MusicDetailPage() {
   //가사 더미 데이터
@@ -17,7 +18,7 @@ function MusicDetailPage() {
   const textLimit = useRef<number>(10);
 
   //조건에 따라 가사 보여주는 함수
-  const lyricer = useMemo(() => {
+  const showLyric = useMemo(() => {
     //글자수만큼 자른 짧은 버전 준비하기
     const shortReview = lyric.slice(0, textLimit.current);
     //원본이 제한보다 길면
@@ -29,9 +30,10 @@ function MusicDetailPage() {
     }
     return lyric;
   }, [isShowMore]);
+
   return (
-    <main className="fixed bg-black top-0 bottom-0 left-0 right-0">
-      <article>
+    <main className="fixed  bg-black top-0 bottom-0 left-0 right-0 flex flex-col justify-center items-center ">
+      <article className="mb-10  w-4/5">
         <section className="flex mb-16">
           {/* 앨범 사진, 제목, 가수, 좋아요, 댓글 수, 조회수? */}
           <div className="mr-5">
@@ -67,7 +69,7 @@ function MusicDetailPage() {
           <h2 className="text-white text-3xl font-bold mb-5">가사</h2>
           <p className="text-[#B7B7B7]">
             {/* 더보기 이 안에서, css로 */}
-            {lyricer}
+            {showLyric}
           </p>
           <a
             className=" text-white cursor-pointer"
@@ -92,7 +94,7 @@ function MusicDetailPage() {
         </section>
       </article>
 
-      <article>{/* 댓글 UI */}</article>
+      <CommentPage />
     </main>
   );
 }
