@@ -1,12 +1,22 @@
 // 공통된 레이아웃 적용
 
+import Header from "@/components/common/Header";
+import Sidebar from "@/components/common/Sidebar";
 import { PropsWithChildren } from "react";
 
 function RootLayout({ children }: PropsWithChildren) {
   return (
-    <div id="root">
-      {/* 헤더 추가 */}
-      {children}
+    <div
+      id="root"
+      className="flex flex-col max-w-[1440px] min-h-screen mx-auto bg-black text-white"
+    >
+      <div className="flex flex-1 gap-4">
+        <Sidebar />
+        <main className="flex-1 p-6">
+          <Header />
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
