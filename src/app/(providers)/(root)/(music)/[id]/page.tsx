@@ -2,12 +2,13 @@
 import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { FaRegCommentAlt } from "react-icons/fa";
-import { GoHeart } from "react-icons/go";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoEyeSharp } from "react-icons/io5";
 import CommentPage from "./_comment/page";
 
 function MusicDetailPage() {
+  const [clickLike, setClickLike] = useState<boolean>(false);
   //가사 더미 데이터
   const [lyric, setlyric] = useState<string>(
     "ㅂㅁㄴㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ"
@@ -51,8 +52,16 @@ function MusicDetailPage() {
             <h1 className="text-white text-5xl font-bold ">How Sweet</h1>
             <h4 className="text-[#B7B7B7] text-2xl">NewJeans</h4>
             <div className="flex items-center w-4/5 justify-between whitespace-pre text-lg">
-              <span className="flex items-center ">
-                <GoHeart /> 500
+              <span
+                className="flex items-center cursor-pointer"
+                onClick={() => setClickLike(!clickLike)}
+              >
+                {clickLike ? (
+                  <GoHeartFill className="size-7" />
+                ) : (
+                  <GoHeart className="size-7" />
+                )}
+                500
               </span>
               <span className="flex items-center">
                 <FaRegCommentAlt /> 30
