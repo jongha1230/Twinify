@@ -1,7 +1,5 @@
-import Page from "@/components/Page";
-
 function MainPage() {
-  return <Page>MainPage</Page>;
+  return <div>MainPage</div>;
 }
 
 export default MainPage;
