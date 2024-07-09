@@ -1,0 +1,378 @@
+{
+  "tracks": [
+    {
+      "album": {
+        "album_type": "SINGLE",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7MNyflLAWpaH0EPw1fdORD"
+            },
+            "href": "https://api.spotify.com/v1/artists/7MNyflLAWpaH0EPw1fdORD",
+            "id": "7MNyflLAWpaH0EPw1fdORD",
+            "name": "Lena Park",
+            "type": "artist",
+            "uri": "spotify:artist:7MNyflLAWpaH0EPw1fdORD"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/1WcM1qWXxSuVmxYlnl1BmX"
+        },
+        "href": "https://api.spotify.com/v1/albums/1WcM1qWXxSuVmxYlnl1BmX",
+        "id": "1WcM1qWXxSuVmxYlnl1BmX",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731c4aae3bf003c10a3cb40e27",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e021c4aae3bf003c10a3cb40e27",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048511c4aae3bf003c10a3cb40e27",
+            "width": 64
+          }
+        ],
+        "is_playable": true,
+        "name": "나는 작사가다 Season 01",
+        "release_date": "2011-08-02",
+        "release_date_precision": "day",
+        "total_tracks": 2,
+        "type": "album",
+        "uri": "spotify:album:1WcM1qWXxSuVmxYlnl1BmX"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/7MNyflLAWpaH0EPw1fdORD"
+          },
+          "href": "https://api.spotify.com/v1/artists/7MNyflLAWpaH0EPw1fdORD",
+          "id": "7MNyflLAWpaH0EPw1fdORD",
+          "name": "Lena Park",
+          "type": "artist",
+          "uri": "spotify:artist:7MNyflLAWpaH0EPw1fdORD"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 273028,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "USA371455650"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/4FPeyDdJrU3bnXMaN5Y0JT"
+      },
+      "href": "https://api.spotify.com/v1/tracks/4FPeyDdJrU3bnXMaN5Y0JT",
+      "id": "4FPeyDdJrU3bnXMaN5Y0JT",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6X4tYeKHmqTcCYA59FDI4f"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6X4tYeKHmqTcCYA59FDI4f",
+        "id": "6X4tYeKHmqTcCYA59FDI4f",
+        "type": "track",
+        "uri": "spotify:track:6X4tYeKHmqTcCYA59FDI4f"
+      },
+      "name": "잘자요 그대",
+      "popularity": 2,
+      "preview_url": "https://p.scdn.co/mp3-preview/a6ac96ead9d60071953aa56f4e19061bd3a407dc?cid=4e3eb8c411b04e86ac8ad3a47803f946",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:4FPeyDdJrU3bnXMaN5Y0JT"
+    },
+    {
+      "album": {
+        "album_type": "SINGLE",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/00R8ml7PSORcOeSOyN2ivQ"
+            },
+            "href": "https://api.spotify.com/v1/artists/00R8ml7PSORcOeSOyN2ivQ",
+            "id": "00R8ml7PSORcOeSOyN2ivQ",
+            "name": "1sagain",
+            "type": "artist",
+            "uri": "spotify:artist:00R8ml7PSORcOeSOyN2ivQ"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/3XYH4I9Oblt8I5wAiFpRZm"
+        },
+        "href": "https://api.spotify.com/v1/albums/3XYH4I9Oblt8I5wAiFpRZm",
+        "id": "3XYH4I9Oblt8I5wAiFpRZm",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2735bc26eb825f1814819419e47",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e025bc26eb825f1814819419e47",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048515bc26eb825f1814819419e47",
+            "width": 64
+          }
+        ],
+        "is_playable": true,
+        "name": "RH- 8th '이젠 지쳤어.. '",
+        "release_date": "2011-09-16",
+        "release_date_precision": "day",
+        "total_tracks": 2,
+        "type": "album",
+        "uri": "spotify:album:3XYH4I9Oblt8I5wAiFpRZm"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/00R8ml7PSORcOeSOyN2ivQ"
+          },
+          "href": "https://api.spotify.com/v1/artists/00R8ml7PSORcOeSOyN2ivQ",
+          "id": "00R8ml7PSORcOeSOyN2ivQ",
+          "name": "1sagain",
+          "type": "artist",
+          "uri": "spotify:artist:00R8ml7PSORcOeSOyN2ivQ"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 202574,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "USA371455667"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/0YexbvGCrf6GulYHF8WUwj"
+      },
+      "href": "https://api.spotify.com/v1/tracks/0YexbvGCrf6GulYHF8WUwj",
+      "id": "0YexbvGCrf6GulYHF8WUwj",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/72MQRHhjnF1JKv2RddjZ6k"
+        },
+        "href": "https://api.spotify.com/v1/tracks/72MQRHhjnF1JKv2RddjZ6k",
+        "id": "72MQRHhjnF1JKv2RddjZ6k",
+        "type": "track",
+        "uri": "spotify:track:72MQRHhjnF1JKv2RddjZ6k"
+      },
+      "name": "이젠 지쳤어.. (feat. Heenain)",
+      "popularity": 1,
+      "preview_url": "https://p.scdn.co/mp3-preview/2c2622ea0a0ea7ae7a776c880cddb7d5c489f2d4?cid=4e3eb8c411b04e86ac8ad3a47803f946",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:0YexbvGCrf6GulYHF8WUwj"
+    },
+    {
+      "album": {
+        "album_type": "ALBUM",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5i8AqrrtbwtPqzkavePQy1"
+            },
+            "href": "https://api.spotify.com/v1/artists/5i8AqrrtbwtPqzkavePQy1",
+            "id": "5i8AqrrtbwtPqzkavePQy1",
+            "name": "lalasweet",
+            "type": "artist",
+            "uri": "spotify:artist:5i8AqrrtbwtPqzkavePQy1"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/72PulpibRrvouaSNyoIY2V"
+        },
+        "href": "https://api.spotify.com/v1/albums/72PulpibRrvouaSNyoIY2V",
+        "id": "72PulpibRrvouaSNyoIY2V",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273cce1962b9f4f9cb04b0eb56b",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02cce1962b9f4f9cb04b0eb56b",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851cce1962b9f4f9cb04b0eb56b",
+            "width": 64
+          }
+        ],
+        "is_playable": true,
+        "name": "bittersweet",
+        "release_date": "2011-11-29",
+        "release_date_precision": "day",
+        "total_tracks": 11,
+        "type": "album",
+        "uri": "spotify:album:72PulpibRrvouaSNyoIY2V"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/5i8AqrrtbwtPqzkavePQy1"
+          },
+          "href": "https://api.spotify.com/v1/artists/5i8AqrrtbwtPqzkavePQy1",
+          "id": "5i8AqrrtbwtPqzkavePQy1",
+          "name": "lalasweet",
+          "type": "artist",
+          "uri": "spotify:artist:5i8AqrrtbwtPqzkavePQy1"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 256680,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "USA371602125"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/4SghbkPHDt7YmZlsiZXWmH"
+      },
+      "href": "https://api.spotify.com/v1/tracks/4SghbkPHDt7YmZlsiZXWmH",
+      "id": "4SghbkPHDt7YmZlsiZXWmH",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/70KCLkOz3p2iRe6Zs9YVnW"
+        },
+        "href": "https://api.spotify.com/v1/tracks/70KCLkOz3p2iRe6Zs9YVnW",
+        "id": "70KCLkOz3p2iRe6Zs9YVnW",
+        "type": "track",
+        "uri": "spotify:track:70KCLkOz3p2iRe6Zs9YVnW"
+      },
+      "name": "When A Bell Rings",
+      "popularity": 3,
+      "preview_url": "https://p.scdn.co/mp3-preview/fab74662c3d2ef1cb19b753b6c2bbafe3ab7bdbc?cid=4e3eb8c411b04e86ac8ad3a47803f946",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:4SghbkPHDt7YmZlsiZXWmH"
+    },
+    {
+      "album": {
+        "album_type": "SINGLE",
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4mYsN4embZ5m6FaZbtkkkA"
+            },
+            "href": "https://api.spotify.com/v1/artists/4mYsN4embZ5m6FaZbtkkkA",
+            "id": "4mYsN4embZ5m6FaZbtkkkA",
+            "name": "정재민",
+            "type": "artist",
+            "uri": "spotify:artist:4mYsN4embZ5m6FaZbtkkkA"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/15xtffcWVjpRQDsXDCGxPQ"
+            },
+            "href": "https://api.spotify.com/v1/artists/15xtffcWVjpRQDsXDCGxPQ",
+            "id": "15xtffcWVjpRQDsXDCGxPQ",
+            "name": "올빼미 (Jaemin Jung",
+            "type": "artist",
+            "uri": "spotify:artist:15xtffcWVjpRQDsXDCGxPQ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3JdS8sZAVZmlmGjeNlPEnC"
+            },
+            "href": "https://api.spotify.com/v1/artists/3JdS8sZAVZmlmGjeNlPEnC",
+            "id": "3JdS8sZAVZmlmGjeNlPEnC",
+            "name": "Owl)",
+            "type": "artist",
+            "uri": "spotify:artist:3JdS8sZAVZmlmGjeNlPEnC"
+          }
+        ],
+        "external_urls": {
+          "spotify": "https://open.spotify.com/album/6RUJrZBNZi2estVr9AIGTX"
+        },
+        "href": "https://api.spotify.com/v1/albums/6RUJrZBNZi2estVr9AIGTX",
+        "id": "6RUJrZBNZi2estVr9AIGTX",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2739d908682b318aec7d3aab997",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e029d908682b318aec7d3aab997",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048519d908682b318aec7d3aab997",
+            "width": 64
+          }
+        ],
+        "is_playable": true,
+        "name": "Summer Season (여름안엔서 Part 2)",
+        "release_date": "2011-08-02",
+        "release_date_precision": "day",
+        "total_tracks": 2,
+        "type": "album",
+        "uri": "spotify:album:6RUJrZBNZi2estVr9AIGTX"
+      },
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4wIaclZQ3VesAfqqe8fGr7"
+          },
+          "href": "https://api.spotify.com/v1/artists/4wIaclZQ3VesAfqqe8fGr7",
+          "id": "4wIaclZQ3VesAfqqe8fGr7",
+          "name": "정재민&올빼미 (Jaemin Jung&Owl)",
+          "type": "artist",
+          "uri": "spotify:artist:4wIaclZQ3VesAfqqe8fGr7"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 186614,
+      "explicit": false,
+      "external_ids": {
+        "isrc": "USA371553320"
+      },
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/26XCpGXNnIpMbgQGVY96la"
+      },
+      "href": "https://api.spotify.com/v1/tracks/26XCpGXNnIpMbgQGVY96la",
+      "id": "26XCpGXNnIpMbgQGVY96la",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3ijPJh6mBJ7cTjFUsCcAok"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3ijPJh6mBJ7cTjFUsCcAok",
+        "id": "3ijPJh6mBJ7cTjFUsCcAok",
+        "type": "track",
+        "uri": "spotify:track:3ijPJh6mBJ7cTjFUsCcAok"
+      },
+      "name": "여름안에서 Part.2 - Instrumental",
+      "popularity": 0,
+      "preview_url": "https://p.scdn.co/mp3-preview/43a95ba136073504796f270e644ed1565faf686e?cid=4e3eb8c411b04e86ac8ad3a47803f946",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:26XCpGXNnIpMbgQGVY96la"
+    }
+  ],
+  "seeds": [
+    {
+      "initialPoolSize": 1152,
+      "afterFilteringSize": 1152,
+      "afterRelinkingSize": 1152,
+      "id": "k-pop",
+      "type": "GENRE",
+      "href": null
+    }
+  ]
+}
