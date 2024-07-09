@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: "i.namu.wiki",
       },
     ],
+    domains: ["i.scdn.co"],
   },
 };
 
