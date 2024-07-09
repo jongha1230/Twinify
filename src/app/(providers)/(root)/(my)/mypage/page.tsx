@@ -4,7 +4,7 @@ import { IoMdHeart } from "react-icons/io";
 
 function MyPage() {
   return (
-    <div className="flex flex-col px-60 relative">
+    <div className="flex flex-col relative pr-3">
       <div className="relative h-64">
         <img
           src="183200d234235c740.jpg"
@@ -39,13 +39,13 @@ function MyPage() {
               <p className="mr-8 text-3xl">1</p>
               <img src="profileImg.png" alt="albumCover" className="h-14" />
               <div className="flex flex-col ml-4">
-                <p>3AM</p>
-                <p>가수명</p>
+                <p className="font-bold">3AM</p>
+                <p className="font-light">가수명</p>
               </div>
             </div>
-            <p className="flex-grow text-center">앨범명</p>
+            <p className="flex-grow text-center font-light">앨범명</p>
             <IoMdHeart className="mr-10 text-2xl text-brandPrimary cursor-pointer" />
-            <p>2:12</p>
+            <p className="font-bold">2:12</p>
           </div>
         </div>
       </div>
