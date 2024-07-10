@@ -1,5 +1,3 @@
-"use client";
-
 import Providers from "@/providers/providers";
 import React from "react";
 

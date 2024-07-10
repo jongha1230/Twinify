@@ -65,6 +65,42 @@ class SpotifyAPI {
 
     return { tracks };
   }
+
+  // 검색 기능
+  async searchTracks(
+    query: string,
+    offset: string = "0",
+    limit: string = "10",
+  ): Promise<{
+    tracks: SpotifyApi.TrackObjectFull[];
+    nextOffset: number;
+  }> {
+    const access_token = await this.getAccessToken();
+    const encodedQuery = encodeURIComponent(query);
+
+    const searchResponse = await fetch(`https://api.spotify.com/v1/search?q=${encodedQuery}&type=track&limit=${limit}&offset=${offset}`, {
+      headers: { Authorization: `Bearer ${access_token}` },
+    });
+
+    const searchData = await searchResponse.json();
+
+    const tracks: SpotifyApi.TrackObjectFull[] = searchData.tracks.items;
+
+    return { tracks, nextOffset: Number(offset) + Number(limit) };
+  }
+
+  // 트랙 상세 정보
+  async getTrackDetails(trackId: string): Promise<SpotifyApi.TrackObjectFull> {
+    const access_token = await this.getAccessToken();
+
+    const trackResponse = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+      headers: { Authorization: `Bearer ${access_token}` },
+    });
+
+    const trackData = await trackResponse.json();
+
+    return trackData;
+  }
 }
 
 export default SpotifyAPI;
