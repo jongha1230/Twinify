@@ -22,7 +22,8 @@ function ListPage() {
   const tracks = [
     { id: 1, title: 'Play It Safe', singer: 'Julia Wolf',like: '🤍', duration: '03:30' },
     { id: 2, title: 'Dance Tonight', singer: 'John Doe',like: '🤍', duration: '04:15' },
-    { id: 3, title: 'Memories', singer: 'Jane Smith',like: '🤍', duration: '03:50' },{ id: 1, title: 'Play It Safe', singer: 'Julia Wolf',like: '🤍', duration: '03:30' },
+    { id: 3, title: 'Memories', singer: 'Jane Smith',like: '🤍', duration: '03:50' },
+    { id: 1, title: 'Play It Safe', singer: 'Julia Wolf',like: '🤍', duration: '03:30' },
     { id: 2, title: 'Dance Tonight', singer: 'John Doe',like: '🤍', duration: '04:15' },
     { id: 3, title: 'Memories', singer: 'Jane Smith',like: '🤍', duration: '03:50' },{ id: 1, title: 'Play It Safe', singer: 'Julia Wolf',like: '🤍', duration: '03:30' },
     { id: 2, title: 'Dance Tonight', singer: 'John Doe',like: '🤍', duration: '04:15' },
