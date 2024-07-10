@@ -5,6 +5,22 @@ import Image from "next/image";
 import { useState } from "react";
 import fakeData from "./(tracks)/_data/data.json";
 
+async function getAccessToken() {
+  const res = await fetch("http://localhost:3000/api/auth/token");
+  const data = await res.json();
+  return data.access_token;
+}
+
+async function fetchTracks({ pageParam = 0 }) {
+  const access_token = await getAccessToken();
+  const res = await fetch(`http://localhost:3000/api/spotify/popular?offset=${pageParam}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+  return res.json();
+}
+
 function MainPage() {
   const tracks = fakeData.tracks;
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);

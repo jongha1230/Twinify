@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const offset = searchParams.get("offset") || "0";
-  const limit = "20";
+  const limit = "10";
   const access_token = request.headers.get("Authorization")?.split(" ")[1];
   if (!access_token) {
     return NextResponse.json({ error: "No access token provided" }, { status: 401 });
