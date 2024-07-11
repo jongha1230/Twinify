@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -8,7 +9,13 @@ function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const user = { name: "테스트" };
+  const { user, signOut, checkUser } = useAuthStore();
+
+  useEffect(() => {
+    checkUser();
+  }, [checkUser]);
+
+  console.log(user);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -22,6 +29,8 @@ function Header() {
     };
   }, []);
 
+  console.log(user?.nickname);
+
   return (
     <header className="px-8 py-4 flex items-center justify-end bg-black relative">
       <div className="w-full max-w-md relative">
@@ -33,7 +42,7 @@ function Header() {
           <div className="relative mr-16" ref={dropdownRef}>
             <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center space-x-2">
               <Image src="/defaultProfile.webp" alt="User avatar" width={32} height={32} className="rounded-full" />
-              <span className="text-white">{user.name}</span>
+              <span className="text-white">{user.user_metadata?.nickname}</span>
               <svg
                 className={`transition-transform transform ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,14 +63,9 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="likes" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">
-                      좋아요 리스트
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">
+                    <button onClick={signOut} className="block w-full px-4 py-2 text-sm text-start text-white hover:bg-gray-700">
                       로그아웃
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>

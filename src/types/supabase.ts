@@ -51,13 +51,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "likes_trackId_fkey"
-            columns: ["trackId"]
-            isOneToOne: false
-            referencedRelation: "tracks"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "likes_userId_fkey"
             columns: ["userId"]
             isOneToOne: false
@@ -98,24 +91,24 @@ export type Database = {
       }
       users: {
         Row: {
-          createdAt: string
+          createdAt: string | null
+          email: string | null
           id: string
           nickname: string | null
-          profileBackImg: string | null
           profileImg: string | null
         }
         Insert: {
-          createdAt?: string
+          createdAt?: string | null
+          email?: string | null
           id: string
           nickname?: string | null
-          profileBackImg?: string | null
           profileImg?: string | null
         }
         Update: {
-          createdAt?: string
+          createdAt?: string | null
+          email?: string | null
           id?: string
           nickname?: string | null
-          profileBackImg?: string | null
           profileImg?: string | null
         }
         Relationships: [
