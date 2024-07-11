@@ -92,23 +92,23 @@ export type Database = {
       users: {
         Row: {
           createdAt: string | null
+          email: string | null
           id: string
           nickname: string | null
-          profileBackImg: string | null
           profileImg: string | null
         }
         Insert: {
           createdAt?: string | null
+          email?: string | null
           id: string
           nickname?: string | null
-          profileBackImg?: string | null
           profileImg?: string | null
         }
         Update: {
           createdAt?: string | null
+          email?: string | null
           id?: string
           nickname?: string | null
-          profileBackImg?: string | null
           profileImg?: string | null
         }
         Relationships: [

@@ -1,6 +1,5 @@
 import { createClient } from "@/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
-  import { redirect } from "next/navigation";
 
 export async function POST(requset: NextRequest) {
   const data = await requset.json();
@@ -21,6 +20,6 @@ export async function POST(requset: NextRequest) {
       console.warn('Supabase signIn returned null data');
       return NextResponse.json({ message: "Sign in process initiated, but no data returned" }, { status: 200 });
     }
-    redirect("/")
+
     return NextResponse.json(user)
 }

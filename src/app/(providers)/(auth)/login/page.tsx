@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FormEvent, useState } from "react";
-import api from "@/api/api";
+import { FormEvent, useEffect, useState } from "react";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useRouter } from "next/navigation";
 
 type LoginForm = {
   email: string;
@@ -15,6 +16,15 @@ function LoginPage() {
     email: "",
     password: "",
   });
+
+  const { signIn, isLoding, error, user } = useAuthStore();
+
+  const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   const handleChange = (prop: keyof LoginForm, value: string) => {
     setValues({ ...values, [prop]: value });
@@ -34,12 +44,16 @@ function LoginPage() {
     try {
       const { email, password } = values;
       console.log(values);
-      api.auth.signIn(email, password);
+      signIn(email, password);
       console.log(`로그인 시도 성공`);
+      router.push("/");
     } catch (error) {
       console.error(`로그인 도중 오류 발생${(error as Error).message}`);
     }
   };
+
+  if (isLoding) return <div>로그인 중...</div>;
+  if (error) return <div> 에러: {error} </div>;
 
   return (
     <div className="flex flex-col items-center w-[43.75rem] h-[48.75rem] bg-white p-6 box-border">

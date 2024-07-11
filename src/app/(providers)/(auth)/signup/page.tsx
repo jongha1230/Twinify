@@ -1,9 +1,10 @@
 "use client";
 
-import api from "@/api/api";
+import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 
 type SignupForm = {
   email: string;
@@ -19,6 +20,15 @@ function SignupPage() {
     checkPassword: "",
     nickname: "",
   });
+
+  const { signUp, isLoding, error, user } = useAuthStore();
+
+  const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   const handleChange = (prop: keyof SignupForm, value: string) => {
     setValues({ ...values, [prop]: value });
@@ -40,12 +50,16 @@ function SignupPage() {
     }
     try {
       const { email, password, nickname } = values;
-      api.auth.signUp(email, password, nickname);
+      signUp(email, password, nickname);
       console.log(`회원가입 성공!`);
+      router.push("/");
     } catch (error) {
       console.error(`회원가입 도중 오류 발생${(error as Error).message}`);
     }
   };
+
+  if (isLoding) return <div>회원가입 중...</div>;
+  if (error) return <div> 에러: {error} </div>;
 
   return (
     <div className="flex flex-col items-center w-[43.75rem] h-[48.75rem] bg-white p-6 box-border">

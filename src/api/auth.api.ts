@@ -34,6 +34,27 @@ async signIn(email: string, password: string): Promise<Tables<"users">> {
         throw new Error(`로그인 도중 오류 발생${(error as Error).message}`);
     }
 } 
+// 로그아웃
+async signOut() {
+    try {
+        const response = await fetch("http://localhost:3000/api/auth/logout", { method: "DELETE" });
+        if(!response.ok) {throw new Error('로그아웃 실패')}
+    } catch (error) {
+        console.error('로그아웃 오류 발생', error)
+    }
+}
+// 로그인 확인
+
+async checkUser() {
+    try {
+        const response = await fetch("http://localhost:3000/api/auth/check", {method: "GET"});
+        if(!response.ok) {throw new Error('유저 정보 확인 오류 발생')}
+       const {user} = await response.json()
+       return user
+    } catch (error) {
+        console.error('유저 정보 확인 중 오류 발생', error)
+    }
+}
 
 }
 
