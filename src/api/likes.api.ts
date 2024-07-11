@@ -2,9 +2,17 @@ import { Tables } from "@/types/supabase";
 
 class LikesAPI {
   async getUserLikes(userId: string): Promise<Tables<"likes">[]> {
-    const response = await fetch(`http://localhost:3000/api/likes?userId=${userId}`);
+    const response = await fetch(`http://localhost:3000/api/likes?userId=${userId}`, {
+      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+    });
     if (!response.ok) throw new Error("Failed to fetch likes");
     const data = await response.json();
+
     return data.userLikes;
   }
 

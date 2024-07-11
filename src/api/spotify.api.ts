@@ -90,16 +90,17 @@ class SpotifyAPI {
   }
 
   // 트랙 상세 정보
-  async getTrackDetails(trackId: string): Promise<SpotifyApi.TrackObjectFull> {
+  async getTrackDetails(trackIds: string | string[]): Promise<SpotifyApi.TrackObjectFull | SpotifyApi.TrackObjectFull[]> {
     const access_token = await this.getAccessToken();
 
-    const trackResponse = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+    const ids = Array.isArray(trackIds) ? trackIds.join(",") : trackIds;
+
+    const response = await fetch(`https://api.spotify.com/v1/tracks?ids=${ids}`, {
       headers: { Authorization: `Bearer ${access_token}` },
     });
 
-    const trackData = await trackResponse.json();
-
-    return trackData;
+    const data = await response.json();
+    return Array.isArray(trackIds) ? data.tracks : data.tracks[0];
   }
 }
 

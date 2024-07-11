@@ -12,12 +12,47 @@ export function useLikes(userId: string) {
 
   const addLikeMutation = useMutation<Tables<"likes">, Error, string>({
     mutationFn: (trackId: string) => api.likes.addLike(userId, trackId),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["likes", userId] }),
+    onMutate: async trackId => {
+      await queryClient.cancelQueries({ queryKey: ["likes", userId] });
+      const previousLikes = queryClient.getQueryData<Tables<"likes">[]>(["likes", userId]);
+
+      queryClient.setQueryData<Tables<"likes">[]>(["likes", userId], old => {
+        const newLike = { userId, trackId } as Tables<"likes">;
+        return old ? [...old, newLike] : [newLike];
+      });
+      return { previousLikes };
+    },
+    onError: (error: Error, trackId: string, context: unknown) => {
+      const typedContext = context as { previousLikes?: Tables<"likes">[] };
+      if (typedContext?.previousLikes) {
+        queryClient.setQueryData(["likes", userId], typedContext.previousLikes);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["likes", userId] });
+    },
   });
 
   const removeLikeMutation = useMutation<void, Error, string>({
     mutationFn: (trackId: string) => api.likes.removeLike(userId, trackId),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["likes", userId] }),
+    onMutate: async trackId => {
+      await queryClient.cancelQueries({ queryKey: ["likes", userId] });
+
+      const previousLikes = queryClient.getQueryData<Tables<"likes">[]>(["likes", userId]);
+
+      queryClient.setQueryData<Tables<"likes">[]>(["likes", userId], old => (old ? old.filter(like => like.trackId !== trackId) : []));
+
+      return { previousLikes };
+    },
+    onError: (error: Error, trackId: string, context: unknown) => {
+      const typedContext = context as { previousLikes?: Tables<"likes">[] };
+      if (typedContext?.previousLikes) {
+        queryClient.setQueryData(["likes", userId], typedContext.previousLikes);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["likes", userId] });
+    },
   });
 
   return {

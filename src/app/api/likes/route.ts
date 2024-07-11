@@ -1,7 +1,7 @@
 import { createClient } from "@/supabase/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const userId = searchParams.get("userId");
 
@@ -16,6 +16,7 @@ export async function GET(request: Request) {
 
     if (error) throw error;
 
+    console.log("흠", userLikes);
     return NextResponse.json({ userLikes });
   } catch (error) {
     console.error("Error fetching likes:", error);
@@ -23,7 +24,7 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const { userId, trackId } = await request.json();
 
   if (!userId || !trackId) {
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const userId = searchParams.get("userId");
   const trackId = searchParams.get("trackId");
@@ -54,7 +55,7 @@ export async function DELETE(request: Request) {
   }
 
   const supabase = createClient();
-
+  console.log("지워", userId, trackId);
   try {
     const { error } = await supabase.from("likes").delete().eq("userId", userId).eq("trackId", trackId);
 
