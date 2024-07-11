@@ -95,7 +95,6 @@ export type Database = {
           email: string | null
           id: string
           nickname: string | null
-          profileBackImg: string | null
           profileImg: string | null
         }
         Insert: {
@@ -103,7 +102,6 @@ export type Database = {
           email?: string | null
           id: string
           nickname?: string | null
-          profileBackImg?: string | null
           profileImg?: string | null
         }
         Update: {
@@ -111,7 +109,6 @@ export type Database = {
           email?: string | null
           id?: string
           nickname?: string | null
-          profileBackImg?: string | null
           profileImg?: string | null
         }
         Relationships: [
