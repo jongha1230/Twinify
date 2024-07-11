@@ -19,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
-    "react-intersection-observer": "^9.10.3"
+    "react-intersection-observer": "^9.10.3",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",
