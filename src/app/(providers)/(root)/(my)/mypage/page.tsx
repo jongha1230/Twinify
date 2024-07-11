@@ -1,8 +1,24 @@
+"use client";
+
 import { HiPencilSquare } from "react-icons/hi2";
 import { LuImagePlus } from "react-icons/lu";
 import { IoMdHeart } from "react-icons/io";
+import { useState } from "react";
+import ProfileModal from "./ProfileModal";
+import NicknameModal from "./NicknameModal";
 
 function MyPage() {
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showNicknameModal, setShowNicknameModal] = useState(false);
+
+  const handleProfileClick = () => {
+    setShowProfileModal(true);
+  };
+
+  const handleNicknameClick = () => {
+    setShowNicknameModal(true);
+  };
+
   return (
     <div className="flex flex-col relative pr-3">
       <div className="relative h-64">
@@ -15,12 +31,12 @@ function MyPage() {
         <div className="relative">
           <img src="profileImg.png" alt="profileImg" className="h-20 w-20 rounded-3xl" />
           <div className="absolute bottom-0 right-0 hover:text-brandPrimary cursor-pointer">
-            <HiPencilSquare />
+            <HiPencilSquare onClick={handleProfileClick} />
           </div>
         </div>
         <div className="flex justify-center items-center">
           <p className="mt-4 mr-2">Nickname</p>
-          <HiPencilSquare className="mt-3 hover:text-brandPrimary cursor-pointer" />
+          <HiPencilSquare onClick={handleNicknameClick} className="mt-3 hover:text-brandPrimary cursor-pointer" />
         </div>
       </div>
       <div className="transform translate-y-28">
@@ -41,6 +57,8 @@ function MyPage() {
           </div>
         </div>
       </div>
+      {showProfileModal && <ProfileModal onClose={() => setShowProfileModal(false)} />}
+      {showNicknameModal && <NicknameModal onClose={() => setShowNicknameModal(false)} />}
     </div>
   );
 }
