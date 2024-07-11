@@ -42,6 +42,7 @@ const CommentPage = ({ id }: { id: string }) => {
       alert("내용을 입력하세요.");
       return;
     }
+    const createdAt = new Date().toISOString();
     addMutation.mutate({ content, user, trackId, createdAt });
   };
 

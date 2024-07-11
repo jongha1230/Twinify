@@ -6,12 +6,12 @@ import Image from "next/image";
 
 const CommentDetailPage = ({ comment, user }: { comment: Tables<"comments">; user: { nickname: string } }) => {
   const queryClient = useQueryClient();
-
   const { id, trackId } = comment;
+
   const deleteMutation = useMutation({
-    mutationFn: (id: string) => deleteComment(id, trackId),
+    mutationFn: ({ trackId, id }: { trackId: string; id: string }) => deleteComment({ trackId, id }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments", id, trackId] });
+      queryClient.invalidateQueries({ queryKey: ["comments", trackId] });
     },
     onError: () => {
       alert("삭제 중 에러가 발생했습니다.");
@@ -19,7 +19,9 @@ const CommentDetailPage = ({ comment, user }: { comment: Tables<"comments">; use
   });
 
   const deleteHandler = () => {
-    deleteMutation.mutate(comment.id);
+    if (confirm("삭제하시겠습니까?")) {
+      deleteMutation.mutate({ trackId, id });
+    }
   };
 
   return (

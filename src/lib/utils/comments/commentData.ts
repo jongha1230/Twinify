@@ -1,5 +1,5 @@
-export const selectComment = async (id: string) => {
-  const response = await fetch(`/api/tracks/comment`);
+export const selectComment = async (trackId: string) => {
+  const response = await fetch(`/api/tracks/comment?trackId=${trackId}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
