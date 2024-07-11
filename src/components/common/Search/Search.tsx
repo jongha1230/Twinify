@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Search() {
   const [query, setQuery] = useState("");
+  const router = useRouter();
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -12,10 +14,11 @@ export default function Search() {
       alert("두 글자 이상 입력해 주세요.");
       return;
     }
+    router.push(`/search?keyword=${query}`);
 
-    const response = await fetch(`/api/spotify/search?q=${encodeURIComponent(query)}&type=track`);
-    const data = await response.json();
-    console.log(data.tracks);
+    //   const response = await fetch(`/api/spotify/search?q=${encodeURIComponent(query)}&type=track`);
+    //   const data = await response.json();
+    //   console.log(data.tracks);
   };
 
   return (
