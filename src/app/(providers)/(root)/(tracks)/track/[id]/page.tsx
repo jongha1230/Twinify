@@ -1,99 +1,74 @@
 "use client";
+import SpotifyService from "@/lib/utils/spotifyService";
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
-import { FaRegCommentAlt } from "react-icons/fa";
-import { IoIosArrowDown, IoIosArrowUp, IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
-import { IoEyeSharp } from "react-icons/io5";
-import CommentPage from "./_comment/page";
+import { useEffect, useRef, useState } from "react";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import fakeData from "../../_data/data.json";
+import CommentPage from "./_comments/page";
 
-function MusicDetailPage() {
+function MusicDetailPage({ params }: { params: { id: string } }) {
+  const { id } = params;
+  const tracks = fakeData.tracks;
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [clickLike, setClickLike] = useState<boolean>(false);
-  //가사 더미 데이터
-  const [lyric, setlyric] = useState<string>(
-    "ㅂㅁㄴㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ",
-  );
-  //더보기 토글 스위치
-  const [isShowMore, setIsShowMore] = useState<boolean>(false);
-  //글자수 제한 선언
-  const textLimit = useRef<number>(10);
 
-  //조건에 따라 가사 보여주는 함수
-  const showLyric = useMemo(() => {
-    //글자수만큼 자른 짧은 버전 준비하기
-    const shortReview = lyric.slice(0, textLimit.current);
-    //원본이 제한보다 길면
-    if (lyric.length > textLimit.current) {
-      // 더보기 눌렸을 때 원본 리턴
-      if (isShowMore) return lyric;
-      // 접기 눌렸을 때 짧은 버전 리턴
-      return shortReview;
-    }
-    return lyric;
-  }, [isShowMore]);
+  const [trackDetails, setTrackDetails] = useState<SpotifyApi.TrackObjectFull | SpotifyApi.TrackObjectFull[]>([]);
+
+  useEffect(() => {
+    const getTrackDetails = async () => {
+      if (id) {
+        const spotifyService = new SpotifyService();
+        try {
+          const details = await spotifyService.getTrackDetails(id);
+          setTrackDetails(details);
+        } catch (error) {
+          if (error instanceof Error) {
+            console.log(error.message);
+          }
+        }
+      }
+    };
+    getTrackDetails();
+  }, [id]);
 
   return (
     <main className="flex flex-col justify-center items-center mt-16">
-      <article className="mb-10  w-4/5">
-        <section className="flex mb-16">
-          {/* 앨범 사진, 제목, 가수, 좋아요, 댓글 수, 조회수? */}
-          <div className="mr-5">
-            <Image
-              src={"https://i.namu.wiki/i/GYK2rhlm0pu6QSTovr5xT7u0upAls3gl-hY9FhqL36K9b0W9xk_J3a90ZJgg6H6_FR8hILz95lszaKCqHLqIF7WW_ktTIehCGSrT13t9GQM-PVhcvIbcXoi_wEBLdbdz1O1CwhHHdk0uLUm4yZEbZw.webp"}
-              width={200}
-              height={200}
-              alt="album"
-            />
-          </div>
+      {trackDetails && (
+        <article className="mb-10  w-4/5">
+          <section className="flex mb-16">
+            <div className="mr-5">
+              <Image src={tracks[0].album.images[0].url} width={200} height={200} alt="album" />
+            </div>
 
-          <div className="flex flex-col justify-center text-[#B7B7B7] gap-4">
-            <h1 className="text-white text-5xl font-bold ">How Sweet</h1>
-            <h4 className="text-[#B7B7B7] text-2xl">NewJeans</h4>
-            <div className="flex items-center w-4/5 justify-between whitespace-pre text-lg">
-              <span className="flex items-center cursor-pointer" onClick={() => setClickLike(!clickLike)}>
-                {clickLike ? <IoMdHeart className="size-7" /> : <IoMdHeartEmpty className="size-7" />}
-                500
-              </span>
-              <span className="flex items-center">
+            <div className="flex flex-col justify-center text-[#B7B7B7] gap-4">
+              <h1 className="text-white text-5xl font-bold ">{tracks[0].name}</h1>
+              <h4 className="text-[#B7B7B7] text-2xl">{tracks[0].album.artists[0].name}</h4>
+              <h6>앨범명 - {tracks[0].album.name}</h6>
+              <h6>{tracks[0].album.release_date}</h6>
+            </div>
+            {/* <div className="flex items-center justify-between text-lg"> */}
+            <span className="flex items-center cursor-pointer ml-auto mt-auto" onClick={() => setClickLike(!clickLike)}>
+              좋아요{clickLike ? <IoMdHeart className="size-9" /> : <IoMdHeartEmpty className="size-9" />}
+            </span>
+            {/* <span className="flex items-center">
                 <FaRegCommentAlt /> 30
               </span>
               <span className="flex items-center">
                 <IoEyeSharp /> 1000
-              </span>
-            </div>
-          </div>
-        </section>
+              </span> */}
+            {/* </div> */}
+          </section>
 
-        <section>
-          {/* 가사, 더보기? */}
-          <h2 className="text-white text-3xl font-bold mb-5">가사</h2>
-          <p className="text-[#B7B7B7]">
-            {/* 더보기 이 안에서, css로 */}
-            {showLyric}
-          </p>
-          <a
-            className=" text-white cursor-pointer"
-            onClick={() => {
-              setIsShowMore(!isShowMore);
-            }}
-          >
-            <span className="flex items-center">
-              {lyric.length > textLimit.current &&
-                (isShowMore ? (
-                  <>
-                    접기
-                    <IoIosArrowUp className="size-5" />
-                  </>
-                ) : (
-                  <>
-                    더보기 <IoIosArrowDown className="size-5" />
-                  </>
-                ))}
-            </span>
-          </a>
-        </section>
-      </article>
+          <section>
+            <h2 className="text-white text-2xl font-bold mb-5">미리 듣기</h2>
+            <audio muted controls playsInline loop ref={audioRef}>
+              <source src={tracks[0].preview_url} type={"audio/mp3"} />
+            </audio>
+          </section>
+        </article>
+      )}
 
-      <CommentPage />
+      <CommentPage id={id} />
     </main>
   );
 }

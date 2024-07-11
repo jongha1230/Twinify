@@ -1,7 +1,6 @@
+import Providers from "@/providers/providers";
 import React from "react";
-
 function ProvidersLayout({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+  return <Providers>{children}</Providers>;
 }
-
 export default ProvidersLayout;
