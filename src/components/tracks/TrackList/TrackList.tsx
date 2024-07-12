@@ -32,7 +32,7 @@ function TrackList({ track, pageIndex, TRACKS_PER_PAGE, index }: { track: Spotif
         <span className="text-sidebarSubtitle">{track.artists.map(artist => artist.name).join(", ")}</span>
       </div>
       <span className="flex flex-col flex-grow items-center pr-20">{track.name}</span>
-      <div className="ml-auto">
+      <div className="flex flex-nowrap ml-auto">
         <span className="cursor-pointer pr-4" onClick={e => handleHeartClick(track.id, e)}>
           {isLiked(track.id) ? "❤️" : "🤍"}
         </span>
