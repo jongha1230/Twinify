@@ -44,7 +44,6 @@ function LoginPage() {
     }
     try {
       const { email, password } = values;
-      console.log(values);
       await api.auth.signIn(email, password);
       console.log(`로그인 시도 성공`);
       router.push("/");

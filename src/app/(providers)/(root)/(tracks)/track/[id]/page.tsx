@@ -1,8 +1,9 @@
 "use client";
 import api from "@/api/api";
+import { useLikes } from "@/lib/hooks/useLikes";
+import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import CommentPage from "./_comments/page";
 
 function MusicDetailPage({ params }: { params: { id: string } }) {
@@ -10,6 +11,22 @@ function MusicDetailPage({ params }: { params: { id: string } }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [clickLike, setClickLike] = useState<boolean>(false);
   const [track, setTrack] = useState<SpotifyApi.TrackObjectFull | null>(null);
+  const { user } = useAuthStore();
+  const userId = user?.id;
+  const { likes, addLike, removeLike } = useLikes(userId);
+  const isLiked = (trackId: string): boolean => {
+    if (!Array.isArray(likes)) return false;
+    return likes.some(like => like.trackId === trackId);
+  };
+  const handleHeartClick = (trackId: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (isLiked(trackId)) {
+      removeLike(trackId);
+    } else {
+      addLike(trackId);
+    }
+  };
 
   useEffect(() => {
     const fetchTrackDetails = async () => {
@@ -40,8 +57,8 @@ function MusicDetailPage({ params }: { params: { id: string } }) {
               <h6>앨범명 - {track.album.name}</h6>
               <h6>{track.album.release_date}</h6>
             </div>
-            <span className="flex items-center cursor-pointer ml-auto mt-auto" onClick={() => setClickLike(!clickLike)}>
-              좋아요{clickLike ? <IoMdHeart className="size-9" /> : <IoMdHeartEmpty className="size-9" />}
+            <span className="flex items-center cursor-pointer ml-auto mt-auto" onClick={e => handleHeartClick(track.id, e)}>
+              <p className="mr-1">좋아요</p> <span className="text-3xl">{isLiked(track.id) ? "❤️" : "🤍"}</span>
             </span>
           </section>
 

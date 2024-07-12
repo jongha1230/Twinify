@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(requset: NextRequest) {
   const data = await requset.json();
-  console.log(data)
   const password = data.password as string;
   const email = data.email as string;
 
