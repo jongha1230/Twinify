@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import api from "@/api/api";
 import { useAuthStore } from "@/stores/useAuthStore";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 
 type LoginForm = {
   email: string;
@@ -17,7 +18,7 @@ function LoginPage() {
     password: "",
   });
 
-  const { signIn, isLoding, error, user } = useAuthStore();
+  const { isLoding, error, user } = useAuthStore();
 
   const router = useRouter();
   useEffect(() => {
@@ -36,7 +37,7 @@ function LoginPage() {
     }
   };
 
-  const handleLogin = (e: FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
       return;
@@ -44,7 +45,7 @@ function LoginPage() {
     try {
       const { email, password } = values;
       console.log(values);
-      signIn(email, password);
+      await api.auth.signIn(email, password);
       console.log(`로그인 시도 성공`);
       router.push("/");
     } catch (error) {

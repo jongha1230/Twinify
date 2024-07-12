@@ -3,11 +3,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "i.namu.wiki",
+        hostname: "i.scdn.co",
       },
     ],
-    domains: ["i.scdn.co"],
   },
 };
 
