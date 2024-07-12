@@ -9,11 +9,8 @@ export async function GET(request: NextRequest) {
   const { data, error } = await createClient().from("comments").select("*").eq("trackId", id).order("createdAt", { ascending: false });
 
   if (error) {
-    console.error("에러발생 ====>", error.message);
+    console.error("댓글을 가져오는 도중 에러발생:", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-  if (!data || data.length === 0) {
-    return NextResponse.json({ error: "No data found" }, { status: 404 });
   }
   return NextResponse.json(data);
 }

@@ -5,7 +5,6 @@ export const selectComment = async (trackId: string) => {
     throw new Error("Network response was not ok");
   }
   const comments = await response.json();
-  console.log("데이터 가져옴!", comments);
   return comments;
 };
 

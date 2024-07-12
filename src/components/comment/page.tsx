@@ -7,7 +7,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-const CommentDetailPage = ({ comment, nickname }: { comment: Tables<"comments">; nickname: string }) => {
+interface User {
+  createdAt: string | null;
+  email: string | null;
+  id: string;
+  nickname: string | null;
+  profileImg: string | null;
+}
+
+const CommentDetailPage = ({ comment, user }: { comment: Tables<"comments">; user: User }) => {
   const [isEditing, setIsEditing] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -112,18 +120,10 @@ const CommentDetailPage = ({ comment, nickname }: { comment: Tables<"comments">;
         <section className="py-10 text-white flex justify-between border-b">
           <div className="flex">
             <div>
-              <Image
-                src={
-                  "https://i.namu.wiki/i/GYK2rhlm0pu6QSTovr5xT7u0upAls3gl-hY9FhqL36K9b0W9xk_J3a90ZJgg6H6_FR8hILz95lszaKCqHLqIF7WW_ktTIehCGSrT13t9GQM-PVhcvIbcXoi_wEBLdbdz1O1CwhHHdk0uLUm4yZEbZw.webp"
-                }
-                width={50}
-                height={50}
-                alt="profile-img"
-                className="rounded-full "
-              />
+              <Image src={user.profileImg || "/profileImg.png"} width={50} height={50} alt="profile-img" className="rounded-full " />
             </div>
             <div className="ml-4 mt-3">
-              <h4 className="mb-4 text-lg font-semibold">{nickname}</h4>
+              <h4 className="mb-4 text-lg font-semibold">{user.nickname}</h4>
               <p className="mb-2 text-lg">{comment.content}</p>
               <p className="text-[#B7B7B7] text-sm">{formatTimestamp(comment.createdAt)}</p>
             </div>
