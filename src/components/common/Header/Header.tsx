@@ -1,22 +1,21 @@
 "use client";
 
+import api from "@/api/api";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import SearchForm from "@/components/common/Search/SearchForm";
+import Search from "../Search";
 
 function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const { user, signOut, checkUser } = useAuthStore();
+  const { user } = useAuthStore();
 
   useEffect(() => {
-    checkUser();
-  }, [checkUser]);
-
-  console.log(user);
+    api.auth.checkUser();
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -30,17 +29,23 @@ function Header() {
     };
   }, []);
 
-  console.log(user?.nickname);
-
+  const handleLogOut = async () => {
+    try {
+      await api.auth.signOut();
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    }
+  };
+  console.log(user);
   return (
     <header className="px-8 py-4 flex items-center justify-end bg-black relative">
-      <SearchForm />
+      <Search />
       <div className="w-1/3 flex justify-end">
         {user ? (
           <div className="relative mr-16" ref={dropdownRef}>
             <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center space-x-2">
               <Image src="/defaultProfile.webp" alt="User avatar" width={32} height={32} className="rounded-full" />
-              <span className="text-white">{user.user_metadata?.nickname}</span>
+              <span className="text-white">{user.nickname}</span>
               <svg
                 className={`transition-transform transform ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +66,12 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <button onClick={signOut} className="block w-full px-4 py-2 text-sm text-start text-white hover:bg-gray-700">
+                    <Link href="likes" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">
+                      좋아요 목록
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogOut} className="block w-full px-4 py-2 text-sm text-start text-white hover:bg-gray-700">
                       로그아웃
                     </button>
                   </li>
