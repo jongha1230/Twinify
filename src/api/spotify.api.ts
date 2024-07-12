@@ -93,7 +93,7 @@ class SpotifyAPI {
 
     const playlistData = await playlistResponse.json();
 
-    const tracks: SpotifyApi.TrackObjectFull[] = playlistData.items.map((item: { track: SpotifyApi.TrackObjectFull }) => item.track);
+    const tracks: SpotifyApi.TrackObjectFull[] = playlistData.items?.map((item: { track: SpotifyApi.TrackObjectFull }) => item.track);
 
     return { tracks };
   }
