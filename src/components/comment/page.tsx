@@ -120,7 +120,7 @@ const CommentDetailPage = ({ comment, user }: { comment: Tables<"comments">; use
         <section className="py-10 text-white flex justify-between border-b">
           <div className="flex">
             <div>
-              <Image src={user.profileImg || "/profileImg.png"} width={50} height={50} alt="profile-img" className="rounded-full " />
+              <Image src={user.profileImg || "/defaultProfile.webp"} width={50} height={50} alt="profile-img" className="rounded-full " />
             </div>
             <div className="ml-4 mt-3">
               <h4 className="mb-4 text-lg font-semibold">{user.nickname}</h4>
