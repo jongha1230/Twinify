@@ -1,5 +1,12 @@
-function MusicSearchPage() {
-  return <div>page</div>;
-}
+import SearchResults from "@/components/SearchResults";
 
-export default MusicSearchPage;
+export default function SearchPage({ searchParams }: { searchParams: { keyword: string } }) {
+  const query = searchParams.keyword || "";
+
+  return (
+    <div className="p-8 mt-16">
+      <div className="text-[32px] font-bold mb-10">검색 결과: {query}</div>
+      {query && <SearchResults query={query} />}
+    </div>
+  );
+}

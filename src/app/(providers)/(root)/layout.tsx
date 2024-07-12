@@ -1,5 +1,3 @@
-// 공통된 레이아웃 적용
-
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import { PropsWithChildren } from "react";

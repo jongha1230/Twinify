@@ -1,9 +1,10 @@
-import TrackList from "@/components/tracks/TrackList";
+import TrackChartList from "@/components/tracks/TrackList/TrackList";
+import { Suspense } from "react";
 
-function ListPage() {
- return <div>
-  <TrackList />
- </div>
+export default async function ChartPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TrackChartList />
+    </Suspense>
+  );
 }
-
-export default ListPage;
