@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 import api from "@/api/api";
@@ -10,17 +10,10 @@ import { formatDuration } from "@/lib/utils/formatDuration";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 
-type Props = {
-  initialData: {
-    tracks: SpotifyApi.TrackObjectFull[];
-    nextOffset: number;
-  };
-};
-
 const TRACKS_PER_PAGE = 10;
 const MAX_TRACKS = 50;
 
-export default function TrackChartList({ initialData }: Props) {
+export default function TrackChartList() {
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -28,13 +21,10 @@ export default function TrackChartList({ initialData }: Props) {
   const { user } = useAuthStore();
   const userId = user?.id;
 
-  const [totalTracks, setTotalTracks] = useState(initialData.tracks.length);
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
     queryKey: ["chartTracks"],
-    queryFn: async ({ pageParam }) => {
+    queryFn: async ({ pageParam = 0 }) => {
       const response = await api.spotify.getChartTracks(pageParam, TRACKS_PER_PAGE);
-      setTotalTracks(prev => Math.min(prev + response.tracks.length, MAX_TRACKS));
       return response;
     },
     getNextPageParam: (lastPage, allPages) => {
@@ -42,7 +32,6 @@ export default function TrackChartList({ initialData }: Props) {
       return loadedTracks < MAX_TRACKS ? lastPage.nextOffset : undefined;
     },
     initialPageParam: 0,
-    initialData: { pages: [initialData], pageParams: [0] },
   });
 
   const { likes, addLike, removeLike } = useLikes(userId);
@@ -67,6 +56,7 @@ export default function TrackChartList({ initialData }: Props) {
     }
   };
 
+  if (status === "pending") return <div>Loading...</div>;
   if (status === "error") return <div>Error loading tracks</div>;
 
   return (
@@ -77,7 +67,7 @@ export default function TrackChartList({ initialData }: Props) {
             {data?.pages.flatMap((page, pageIndex) =>
               page.tracks.map((track, index) => (
                 <li key={track.id} className={`px-8 py-3 flex items-center space-x-4 cursor-pointer hover:bg-gray-900`}>
-                  <span>{pageIndex * 10 + index + 1}</span>
+                  <span>{pageIndex * TRACKS_PER_PAGE + index + 1}</span>
                   <Image src={track.album.images[2].url} alt={`${track.name} album cover`} width={52} height={52} />
                   <div className="flex flex-col flex-grow max-w-40">
                     <span className="font-semibold text-lg">{track.name}</span>
