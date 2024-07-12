@@ -12,7 +12,11 @@
   "dependencies": {
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.3",
+<<<<<<< HEAD
     "@types/uuid": "^10.0.0",
+=======
+    "@tanstack/react-query": "^5.51.1",
+>>>>>>> 53f104a2db3e9981c08092253ed3f239b4de1e1b
     "@types/ws": "^8.5.10",
     "class-variance-authority": "^0.7.0",
     "next": "14.2.4",
@@ -20,7 +24,10 @@
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-intersection-observer": "^9.10.3",
+<<<<<<< HEAD
     "uuid": "^10.0.0",
+=======
+>>>>>>> 53f104a2db3e9981c08092253ed3f239b4de1e1b
     "zustand": "^4.5.4"
   },
   "devDependencies": {

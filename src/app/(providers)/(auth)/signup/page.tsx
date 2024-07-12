@@ -1,5 +1,6 @@
 "use client";
 
+import api from "@/api/api";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +22,7 @@ function SignupPage() {
     nickname: "",
   });
 
-  const { signUp, isLoding, error, user } = useAuthStore();
+  const { isLoding, error, user } = useAuthStore();
 
   const router = useRouter();
   useEffect(() => {
@@ -43,14 +44,14 @@ function SignupPage() {
     }
   };
 
-  const handleSignup = (e: FormEvent) => {
+  const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
       return;
     }
     try {
       const { email, password, nickname } = values;
-      signUp(email, password, nickname);
+      await api.auth.signUp(email, password, nickname);
       console.log(`회원가입 성공!`);
       router.push("/");
     } catch (error) {
