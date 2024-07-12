@@ -15,10 +15,6 @@ export default function Search() {
       return;
     }
     router.push(`/search?keyword=${query}`);
-
-    //   const response = await fetch(`/api/spotify/search?q=${encodeURIComponent(query)}&type=track`);
-    //   const data = await response.json();
-    //   console.log(data.tracks);
   };
 
   return (
