@@ -15,8 +15,6 @@ export async function GET(request: NextRequest) {
     const { data: userLikes, error } = await supabase.from("likes").select("*").eq("userId", userId);
 
     if (error) throw error;
-
-    console.log("흠", userLikes);
     return NextResponse.json({ userLikes });
   } catch (error) {
     console.error("Error fetching likes:", error);
@@ -55,7 +53,6 @@ export async function DELETE(request: NextRequest) {
   }
 
   const supabase = createClient();
-  console.log("지워", userId, trackId);
   try {
     const { error } = await supabase.from("likes").delete().eq("userId", userId).eq("trackId", trackId);
 

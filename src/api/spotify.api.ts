@@ -17,7 +17,7 @@ class SpotifyAPI {
     }
 
     if (typeof window !== 'undefined') {
-      const response = await fetch('/api/spotify-token');
+      const response = await fetch('http://localhost:3000/api/spotify-token');
       const data = await response.json();
       this.accessToken = data.token;
       this.tokenExpirationTime = Date.now() + 3600 * 1000; 
@@ -37,10 +37,9 @@ class SpotifyAPI {
       },
       body: "grant_type=client_credentials",
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
 
     const data = await response.json();
     this.accessToken = data.access_token;

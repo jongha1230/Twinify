@@ -27,7 +27,6 @@ export class AuthAPI {
             const response = await fetch("http://localhost:3000/api/auth/signup", {method: "POST", body: JSON.stringify(data)})
 
             const user = await response.json()
-            console.log("user1:", user)
             const fullUser = await this.getFullUserInfo(user);
             this.setUser(fullUser);
     

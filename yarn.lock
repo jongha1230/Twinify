@@ -202,6 +202,24 @@
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.10.3.tgz"
   integrity sha512-qC/xYId4NMebE6w/V33Fh9gWxLgURiNYgVNObbJl2LZv0GUUItCcCqC5axQSwRaAgaxl2mELq1rMzlswaQ0Zxg==
 
+"@supabase-cache-helpers/postgrest-core@0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@supabase-cache-helpers/postgrest-core/-/postgrest-core-0.5.2.tgz#5c699700e6750d04977f324077627c04dbd7982f"
+  integrity sha512-EgNRtSUooNSPy1Pro2p5wDyFShy2wl4AGzi9AODYlMxd6gWV1wvJTzAcydXpKRnthypB1jEKZCnFp86U3yUakw==
+  dependencies:
+    fast-equals "5.0.1"
+    flat "5.0.2"
+    merge-anything "5.1.7"
+    xregexp "5.1.1"
+
+"@supabase-cache-helpers/postgrest-react-query@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@supabase-cache-helpers/postgrest-react-query/-/postgrest-react-query-1.7.0.tgz#a8c4be160dfe52838c07a419e8ec9686fba0ce64"
+  integrity sha512-1XlXonWCz9ku0cjnIk7HA3dyh5f5JTVeROVB/jBXgG+rRdtOg6jBSVxzWKTkXQMG4yW9INlm2HoF4o30srdzpg==
+  dependencies:
+    "@supabase-cache-helpers/postgrest-core" "0.5.2"
+    flat "5.0.2"
+
 "@supabase/auth-js@2.64.2":
   version "2.64.2"
   resolved "https://registry.npmjs.org/@supabase/auth-js/-/auth-js-2.64.2.tgz"
@@ -1278,6 +1296,11 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
+fast-equals@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/fast-equals/-/fast-equals-5.0.1.tgz#a4eefe3c5d1c0d021aeed0bc10ba5e0c12ee405d"
+  integrity sha512-WF1Wi8PwwSY7/6Kx0vKXtw8RwuSGoM1bvDaJbu7MxDlR1vovZjIAKrnzyrThgAjm6JDTu0fVgWXDlMGspodfoQ==
+
 fast-glob@^3.2.9, fast-glob@^3.3.0, fast-glob@^3.3.1:
   version "3.3.2"
   resolved "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.2.tgz"
@@ -1336,6 +1359,11 @@ flat-cache@^3.0.4:
     flatted "^3.2.9"
     keyv "^4.5.3"
     rimraf "^3.0.2"
+
+flat@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
+  integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
 flatted@^3.2.9:
   version "3.3.1"
@@ -1777,6 +1805,11 @@ is-weakset@^2.0.3:
   dependencies:
     call-bind "^1.0.7"
     get-intrinsic "^1.2.4"
+
+is-what@^4.1.8:
+  version "4.1.16"
+  resolved "https://registry.yarnpkg.com/is-what/-/is-what-4.1.16.tgz#1ad860a19da8b4895ad5495da3182ce2acdd7a6f"
+  integrity sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==
 
 isarray@^2.0.5:
   version "2.0.5"
@@ -3017,6 +3050,13 @@ ws@^8.14.2:
   version "8.18.0"
   resolved "https://registry.npmjs.org/ws/-/ws-8.18.0.tgz"
   integrity sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==
+
+xregexp@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/xregexp/-/xregexp-5.1.1.tgz#6d3fe18819e3143aaf52f9284d34f49a59583ebb"
+  integrity sha512-fKXeVorD+CzWvFs7VBuKTYIW63YD1e1osxwQ8caZ6o1jg6pDAbABDG54LCIq0j5cy7PjRvGIq6sef9DYPXpncg==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.16.5"
 
 yaml@^2.3.4:
   version "2.4.5"

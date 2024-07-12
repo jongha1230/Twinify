@@ -10,9 +10,9 @@
     "gen": "npx supabase gen types typescript --project-id eqfrqwypxsanknqhkvsq --schema public > src/types/supabase.ts"
   },
   "dependencies": {
+    "@supabase-cache-helpers/postgrest-react-query": "^1.7.0",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.3",
-    "@types/uuid": "^10.0.0",
     "@tanstack/react-query": "^5.51.1",
     "@types/uuid": "^10.0.0",
     "@types/ws": "^8.5.10",
