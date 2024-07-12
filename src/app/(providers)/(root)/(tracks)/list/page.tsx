@@ -1,4 +1,5 @@
-import TrackChartList from "@/components/tracks/TrackList/TrackList";
+
+import TrackChartList from "@/components/tracks/TrackChartList";
 import { Suspense } from "react";
 
 export default async function ChartPage() {
