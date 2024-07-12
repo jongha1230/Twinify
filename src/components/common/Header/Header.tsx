@@ -5,6 +5,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import Search from "../Search";
 
 function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -38,10 +39,7 @@ function Header() {
   console.log(user);
   return (
     <header className="px-8 py-4 flex items-center justify-end bg-black relative">
-      <div className="w-full max-w-md relative">
-        <Image src="/icons/search.png" alt="Search icon" width={20} height={20} className="absolute left-4 top-1/2 transform -translate-y-1/2" />
-        <input type="text" placeholder="Search" className="w-full px-12 py-2 bg-gray-800 text-white rounded-full focus:outline-none focus:ring-2 focus:ring-brandPrimary focus:border-transparent " />
-      </div>
+      <Search />
       <div className="w-1/3 flex justify-end">
         {user ? (
           <div className="relative mr-16" ref={dropdownRef}>
