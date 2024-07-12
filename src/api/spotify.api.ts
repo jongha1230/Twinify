@@ -29,7 +29,7 @@ class SpotifyAPI {
 
     const auth = Buffer.from(`${this.clientId}:${this.clientSecret}`).toString("base64");
 
-   const response = await fetch("https://accounts.spotify.com/api/token", {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         Authorization: `Basic ${auth}`,
@@ -93,7 +93,7 @@ console.log(response)
 
     const playlistData = await playlistResponse.json();
 
-    const tracks: SpotifyApi.TrackObjectFull[] = playlistData.items.map((item: { track: SpotifyApi.TrackObjectFull }) => item.track);
+    const tracks: SpotifyApi.TrackObjectFull[] = playlistData.items?.map((item: { track: SpotifyApi.TrackObjectFull }) => item.track);
 
     return { tracks };
   }
