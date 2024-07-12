@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-interface LikedTracksListProps {
+export interface LikedTracksListProps {
   initialTracks: SpotifyApi.TrackObjectFull[];
   totalLikes: number;
   userId: string;
@@ -40,7 +40,7 @@ export default function LikedTracksList({ initialTracks, totalLikes, userId }: L
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
-  if (!data) return <div>No liked tracks found.</div>;
+  if (!data || !likes) return <div>No data available.</div>;
 
   return (
     <section>
@@ -52,7 +52,7 @@ export default function LikedTracksList({ initialTracks, totalLikes, userId }: L
                 <span>{pageIndex * 10 + index + 1}</span>
                 <Image src={track.album.images[2].url} alt={`${track.name} album cover`} width={52} height={52} />
                 <div className="flex flex-col flex-grow max-w-40">
-                  <span className="font-semibold text-lg text-nowrap">{track.name}</span>
+                  <span className="font-semibold text-lg ">{track.name}</span>
                   <span className="text-sidebarSubtitle">{track.artists.map(artist => artist.name).join(", ")}</span>
                 </div>
                 <span className="flex flex-col flex-grow items-center pr-20">{track.name}</span>

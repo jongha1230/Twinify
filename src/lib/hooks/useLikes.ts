@@ -2,16 +2,22 @@ import api from "@/api/api";
 import { Tables } from "@/types/supabase";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export function useLikes(userId: string) {
+export function useLikes(userId: string | undefined) {
   const queryClient = useQueryClient();
 
   const likesQuery = useQuery<Tables<"likes">[], Error>({
     queryKey: ["likes", userId],
-    queryFn: () => api.likes.getUserLikes(userId),
+    queryFn: () => {
+      if (!userId) throw new Error("No user ID");
+      return api.likes.getUserLikes(userId)
+    },
+    enabled: !!userId,
   });
 
   const addLikeMutation = useMutation<Tables<"likes">, Error, string>({
-    mutationFn: (trackId: string) => api.likes.addLike(userId, trackId),
+    mutationFn: (trackId: string) => {
+      if (!userId) throw new Error("No user ID");
+      return api.likes.addLike(userId, trackId)},
     onMutate: async trackId => {
       await queryClient.cancelQueries({ queryKey: ["likes", userId] });
       const previousLikes = queryClient.getQueryData<Tables<"likes">[]>(["likes", userId]);
@@ -34,7 +40,9 @@ export function useLikes(userId: string) {
   });
 
   const removeLikeMutation = useMutation<void, Error, string>({
-    mutationFn: (trackId: string) => api.likes.removeLike(userId, trackId),
+    mutationFn: (trackId: string) => {
+      if (!userId) throw new Error("No user ID");
+      return api.likes.removeLike(userId, trackId)},
     onMutate: async trackId => {
       await queryClient.cancelQueries({ queryKey: ["likes", userId] });
 

@@ -2,6 +2,7 @@
 
 import { useLikes } from "@/lib/hooks/useLikes";
 import { formatDuration } from "@/lib/utils/formatDuration";
+import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 
 interface TrackListProps {
@@ -9,8 +10,8 @@ interface TrackListProps {
 }
 
 export default function TopTrackList({ tracks }: TrackListProps) {
-  const userId = "e6427ef9-aeca-4383-a390-571d968bff1f";
-  const { likes, isLoading, error, addLike, removeLike } = useLikes(userId);
+  const { user } = useAuthStore();
+  const { likes, isLoading, error, addLike, removeLike } = useLikes(user?.id);
 
   const isLiked = (trackId: string): boolean => {
     if (!Array.isArray(likes)) return false;

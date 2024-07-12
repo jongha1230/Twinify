@@ -63,6 +63,11 @@ function Header() {
                     </Link>
                   </li>
                   <li>
+                    <Link href="likes" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">
+                      좋아요 목록
+                    </Link>
+                  </li>
+                  <li>
                     <button onClick={signOut} className="block w-full px-4 py-2 text-sm text-start text-white hover:bg-gray-700">
                       로그아웃
                     </button>
