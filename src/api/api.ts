@@ -1,4 +1,5 @@
-import AuthAPI from "./auth.api";
+
+import { AuthAPI } from "./auth.api";
 import LikesAPI from "./likes.api";
 import SpotifyAPI from "./spotify.api";
 

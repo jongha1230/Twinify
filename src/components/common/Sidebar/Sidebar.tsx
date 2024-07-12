@@ -18,7 +18,7 @@ function Sidebar() {
             <SidebarButton icon="/icons/album.png" title="앨범" href="/" disabled />
           </li>
           <li>
-            <SidebarButton icon="/icons/track.png" title="트랙" href="/tracks" />
+            <SidebarButton icon="/icons/track.png" title="트랙" href="/list" />
           </li>
           <li>
             <SidebarButton icon="/icons/video.png" title="비디오" href="/" disabled />
