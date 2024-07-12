@@ -2,6 +2,7 @@ import { createClient } from "@/supabase/server";
 import { Tables } from "@/types/supabase";
 import { NextRequest, NextResponse } from "next/server";
 
+// 댓글 가져오기
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("trackId");
@@ -14,13 +15,10 @@ export async function GET(request: NextRequest) {
   if (!data || data.length === 0) {
     return NextResponse.json({ error: "No data found" }, { status: 404 });
   }
-  const comments = data.map(comment => ({
-    ...comment,
-    createdAt: new Date(comment.createdAt).toISOString().slice(0, 10),
-  }));
-  return NextResponse.json(comments);
+  return NextResponse.json(data);
 }
 
+// 댓글 추가하기
 export async function POST(request: NextRequest) {
   const data = await request.json();
   const { content, userId, trackId, createdAt }: Tables<"comments"> = data;
@@ -37,6 +35,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json(data);
 }
 
+// 댓글 삭제하기
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
@@ -53,14 +52,17 @@ export async function DELETE(request: Request) {
   return NextResponse.json(data);
 }
 
+// 댓글 수정하기
 export async function PATCH(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
+  const trackId = searchParams.get("trackId");
   
   const { content } = await request.json();
-  const { error } = await createClient().from("comments").update({ content }).eq("id", id);
+  const { error } = await createClient().from("comments").update({ content }).eq("id", id).eq("trackId", trackId);
   if (error) {
-    throw new Error(error.message);
+    console.error(error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return;
+  return NextResponse.json(content)
 }
