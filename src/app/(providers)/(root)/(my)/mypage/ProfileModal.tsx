@@ -1,5 +1,6 @@
+import { useAuthStore } from "@/stores/useAuthStore";
 import { createClient } from "@/supabase/client";
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 interface ProfileModalProps {
@@ -9,6 +10,7 @@ interface ProfileModalProps {
 const ProfileModal: FC<ProfileModalProps> = ({ onClose }) => {
   const [profileImage, setProfileImage] = useState("");
   const supabase = createClient();
+  const { user, setUser } = useAuthStore();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -17,6 +19,15 @@ const ProfileModal: FC<ProfileModalProps> = ({ onClose }) => {
     const reader = new FileReader();
     reader.onload = e => setProfileImage(e.target?.result as string);
     reader.readAsDataURL(file);
+  };
+
+  const fetchUser = async () => {
+    const { data: userData, error: userError } = await supabase.from("users").select("*").eq("id", user?.id).single();
+    if (userError) {
+      console.error("사용자 정보를 불러오는 중 오류 발생", userError);
+    } else {
+      setUser(userData);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,12 +43,20 @@ const ProfileModal: FC<ProfileModalProps> = ({ onClose }) => {
 
     const { data } = await supabase.storage.from("users").getPublicUrl(filePath);
 
-    const userId = "e6427ef9-aeca-4383-a390-571d968bff1f"; // 사용자 ID
-    const { error: updateError } = await supabase.from("users").update({ profileImg: data.publicUrl }).eq("id", userId);
-    if (updateError) return console.error(updateError);
+    if (user) {
+      const { error: updateError } = await supabase.from("users").update({ profileImg: data.publicUrl }).eq("id", user.id);
+      if (updateError) return console.error(updateError);
 
-    onClose();
+      await fetchUser();
+      onClose();
+    } else {
+      console.error("error");
+    }
   };
+
+  useEffect(() => {
+    fetchUser();
+  }, [user?.id]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

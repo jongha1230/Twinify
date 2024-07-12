@@ -3,13 +3,18 @@
 import { HiPencilSquare } from "react-icons/hi2";
 import { LuImagePlus } from "react-icons/lu";
 import { IoMdHeart } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileModal from "./ProfileModal";
 import NicknameModal from "./NicknameModal";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { createClient } from "@/supabase/client";
 
 function MyPage() {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showNicknameModal, setShowNicknameModal] = useState(false);
+  const supabase = createClient();
+
+  const { user, setUser } = useAuthStore();
 
   const handleProfileClick = () => {
     setShowProfileModal(true);
@@ -19,23 +24,33 @@ function MyPage() {
     setShowNicknameModal(true);
   };
 
+  const fetchUser = async () => {
+    const { data: userData, error: userError } = await supabase.from("users").select("*").eq("id", user?.id).single();
+    if (userError) {
+      console.error("사용자 정보를 불러오는 중 오류 발생", userError);
+    } else {
+      setUser(userData);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, [user]);
+
   return (
     <div className="flex flex-col relative pr-3">
       <div className="relative h-64">
         <img src="183200d234235c740.jpg" alt="mainimg" className="flex h-full w-full object-cover" />
-        <div className="absolute bottom-0 right-0 text-4xl hover:text-brandPrimary cursor-pointer">
-          <LuImagePlus className="mr-2 mb-2" />
-        </div>
       </div>
       <div className="flex justify-center items-center flex-col absolute top-1/2 left-1/2 transform translate-y-8 -translate-x-1/2 mb-10">
         <div className="relative">
-          <img src="profileImg.png" alt="profileImg" className="h-20 w-20 rounded-3xl" />
+          <img src={user?.profileImg || "profileImg.png"} alt="profileImg" className="h-20 w-20 rounded-3xl" />
           <div className="absolute bottom-0 right-0 hover:text-brandPrimary cursor-pointer">
             <HiPencilSquare onClick={handleProfileClick} />
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <p className="mt-4 mr-2">Nickname</p>
+          <p className="mt-4 mr-2">{user?.nickname || "nickname"}</p>
           <HiPencilSquare onClick={handleNicknameClick} className="mt-3 hover:text-brandPrimary cursor-pointer" />
         </div>
       </div>

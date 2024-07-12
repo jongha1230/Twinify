@@ -1,5 +1,6 @@
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import { createClient } from "@/supabase/client";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 interface NicknameModalProps {
   onClose: () => void;
@@ -7,21 +8,35 @@ interface NicknameModalProps {
 
 const NicknameModal: FC<NicknameModalProps> = ({ onClose }) => {
   const [nickname, setNickname] = useState("");
+  const { user, setUser } = useAuthStore();
   const supabase = createClient();
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
 
+  const fetchUser = async () => {
+    const { data: userData, error: userError } = await supabase.from("users").select("*").eq("id", user?.id).single();
+    if (userError) {
+      console.error("사용자 정보를 불러오는 중 오류 발생", userError);
+    } else {
+      setUser(userData);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, [user]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const user = "e6427ef9-aeca-4383-a390-571d968bff1f";
-    const { data, error } = await supabase.from("users").update({ nickname }).match({ id: user });
+    const { data, error } = await supabase.from("users").update({ nickname }).match({ id: user?.id });
 
     if (error) {
       console.error("닉네임 업데이트 중 오류 발생", error);
     } else {
       console.log("닉네임이 성공적으로 업데이트되었습니다", data);
+      fetchUser();
     }
 
     onClose();
