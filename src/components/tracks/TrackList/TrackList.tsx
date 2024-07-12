@@ -9,6 +9,7 @@ import { useLikes } from "@/lib/hooks/useLikes";
 import { formatDuration } from "@/lib/utils/formatDuration";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
+import Link from "next/link";
 
 const TRACKS_PER_PAGE = 10;
 const MAX_TRACKS = 50;
@@ -66,21 +67,23 @@ export default function TrackChartList() {
           <ul>
             {data?.pages.flatMap((page, pageIndex) =>
               page.tracks.map((track, index) => (
-                <li key={track.id} className={`px-8 py-3 flex items-center space-x-4 cursor-pointer hover:bg-gray-900`}>
-                  <span>{pageIndex * TRACKS_PER_PAGE + index + 1}</span>
-                  <Image src={track.album.images[2].url} alt={`${track.name} album cover`} width={52} height={52} />
-                  <div className="flex flex-col flex-grow max-w-40">
-                    <span className="font-semibold text-lg">{track.name}</span>
-                    <span className="text-sidebarSubtitle">{track.artists.map(artist => artist.name).join(", ")}</span>
-                  </div>
-                  <span className="flex flex-col flex-grow items-center pr-20">{track.name}</span>
-                  <div className="ml-auto">
-                    <span className="cursor-pointer pr-4" onClick={e => handleHeartClick(track.id, e)}>
-                      {isLiked(track.id) ? "❤️" : "🤍"}
-                    </span>
-                    <span>{formatDuration(track.duration_ms)}</span>
-                  </div>
-                </li>
+                <Link href={`track/${track.id}`} key={track.id}>
+                  <li key={track.id} className={`px-8 py-3 flex items-center space-x-4 cursor-pointer hover:bg-gray-900`}>
+                    <span>{pageIndex * TRACKS_PER_PAGE + index + 1}</span>
+                    <Image src={track.album.images[2].url} alt={`${track.name} album cover`} width={52} height={52} />
+                    <div className="flex flex-col flex-grow max-w-40">
+                      <span className="font-semibold text-lg">{track.name}</span>
+                      <span className="text-sidebarSubtitle">{track.artists.map(artist => artist.name).join(", ")}</span>
+                    </div>
+                    <span className="flex flex-col flex-grow items-center pr-20">{track.name}</span>
+                    <div className="ml-auto">
+                      <span className="cursor-pointer pr-4" onClick={e => handleHeartClick(track.id, e)}>
+                        {isLiked(track.id) ? "❤️" : "🤍"}
+                      </span>
+                      <span>{formatDuration(track.duration_ms)}</span>
+                    </div>
+                  </li>
+                </Link>
               )),
             )}
           </ul>
