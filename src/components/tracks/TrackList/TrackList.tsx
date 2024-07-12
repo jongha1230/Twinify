@@ -16,6 +16,7 @@ function TrackList({ track, pageIndex, TRACKS_PER_PAGE, index }: { track: Spotif
   };
 
   const handleHeartClick = (trackId: string, event: React.MouseEvent) => {
+    event.preventDefault();
     event.stopPropagation();
     if (isLiked(trackId)) {
       removeLike(trackId);
