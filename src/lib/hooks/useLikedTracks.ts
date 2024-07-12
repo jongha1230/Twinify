@@ -8,17 +8,11 @@ export type LikedTracksResponse = {
   nextOffset: number | null;
 };
 
-export const useLikedTracks = (userId: string, initialTracks: SpotifyApi.TrackObjectFull[], totalLikes: number) => {
-  return useInfiniteQuery<LikedTracksResponse, Error, InfiniteData<LikedTracksResponse>, string[], number>({
+export const useLikedTracks = (userId: string | undefined) => {
+  return useInfiniteQuery<LikedTracksResponse, Error, InfiniteData<LikedTracksResponse>, (string | undefined)[], number>({
     queryKey: ["likedTracks", userId],
     queryFn: async ({ pageParam = 0 }) => {
-      if (pageParam === 0) {
-        return {
-          tracks: initialTracks,
-          totalLikes,
-          nextOffset: (initialTracks?.length || 0) < totalLikes ? initialTracks?.length || 0 : null,
-        };
-      }
+      if (!userId) throw new Error("User ID is required");
       const likes = await api.likes.getUserLikes(userId);
       const pageStart = pageParam;
       const pageEnd = pageStart + TRACKS_PER_PAGE;
@@ -33,17 +27,10 @@ export const useLikedTracks = (userId: string, initialTracks: SpotifyApi.TrackOb
         nextOffset: pageEnd < likes.length ? pageEnd : null,
       };
     },
+    enabled: !!userId,
     getNextPageParam: lastPage => lastPage.nextOffset,
     initialPageParam: 0,
-    initialData: {
-      pages: [
-        {
-          tracks: initialTracks || [],
-          totalLikes,
-          nextOffset: (initialTracks?.length || 0) < totalLikes ? initialTracks?.length || 0 : null,
-        },
-      ],
-      pageParams: [0],
-    },
+    refetchInterval: 5000,
+    staleTime: 0, 
   });
 };

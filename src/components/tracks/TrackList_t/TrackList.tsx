@@ -20,7 +20,7 @@ type Props = {
 const TRACKS_PER_PAGE = 10;
 const MAX_TRACKS = 50;
 
-export default function TracksList({ initialData }: Props) {
+export default function TrackChartList({ initialData }: Props) {
   const { ref, inView } = useInView({
     threshold: 0,
   });

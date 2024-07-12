@@ -60,6 +60,7 @@ export function useLikes(userId: string | undefined) {
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["likes", userId] });
+      queryClient.invalidateQueries({ queryKey: ["likedTracks", userId] });
     },
   });
 

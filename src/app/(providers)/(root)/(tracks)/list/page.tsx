@@ -1,5 +1,5 @@
 import api from "@/api/api";
-import TracksList from "@/components/tracks/TrackList_t/TrackList";
+import TrackChartList from "@/components/tracks/TrackList_t/TrackList";
 import { Suspense } from "react";
 
 export default async function ChartPage() {
@@ -7,7 +7,7 @@ export default async function ChartPage() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <TracksList initialData={initialData} />
+      <TrackChartList initialData={initialData} />
     </Suspense>
   );
 }
