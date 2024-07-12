@@ -29,7 +29,7 @@ class SpotifyAPI {
 
     const auth = Buffer.from(`${this.clientId}:${this.clientSecret}`).toString("base64");
 
-   const response = await fetch("https://accounts.spotify.com/api/token", {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         Authorization: `Basic ${auth}`,
