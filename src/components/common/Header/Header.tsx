@@ -4,7 +4,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import Search from "@/components/common/Search/Search";
+import SearchForm from "@/components/common/Search/SearchForm";
 
 function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -34,7 +34,7 @@ function Header() {
 
   return (
     <header className="px-8 py-4 flex items-center justify-end bg-black relative">
-      <Search />
+      <SearchForm />
       <div className="w-1/3 flex justify-end">
         {user ? (
           <div className="relative mr-16" ref={dropdownRef}>
