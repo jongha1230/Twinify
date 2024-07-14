@@ -8,12 +8,19 @@ export type LikedTracksResponse = {
   nextOffset: number | null;
 };
 
-export const useLikedTracks = (userId: string | undefined) => {
+type Like =  {
+  created_at: string | null;
+  trackId: string;
+  userId: string;
+}[]
+
+export const useLikedTracks = (userId: string | undefined, likes: Like | undefined) => {
   return useInfiniteQuery<LikedTracksResponse, Error, InfiniteData<LikedTracksResponse>, (string | undefined)[], number>({
     queryKey: ["likedTracks", userId],
     queryFn: async ({ pageParam = 0 }) => {
       if (!userId) throw new Error("User ID is required");
-      const likes = await api.likes.getUserLikes(userId);
+      if (!likes) throw new Error("Likes data is required");
+      
       const pageStart = pageParam;
       const pageEnd = pageStart + TRACKS_PER_PAGE;
       const pageLikes = likes.slice(pageStart, pageEnd);
@@ -27,7 +34,7 @@ export const useLikedTracks = (userId: string | undefined) => {
         nextOffset: pageEnd < likes.length ? pageEnd : null,
       };
     },
-    enabled: !!userId,
+    enabled: !!userId && !!likes && likes.length > 0,
     getNextPageParam: lastPage => lastPage.nextOffset,
     initialPageParam: 0,
     refetchInterval: 5000,

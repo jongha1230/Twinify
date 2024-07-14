@@ -26,8 +26,8 @@ export default function LikedTracksList() {
     }
   }, [userId, router]);
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isError, error } = useLikedTracks(userId);
   const { likes } = useLikes(userId);
+  const { data, fetchNextPage, hasNextPage, isLoading, isError, error } = useLikedTracks(userId, likes);
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -35,6 +35,10 @@ export default function LikedTracksList() {
       fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage]);
+
+  if (!likes) {
+    return <div>좋아요 목록이 없습니다.</div>;
+  }
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;

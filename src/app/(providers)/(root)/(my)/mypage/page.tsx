@@ -17,8 +17,9 @@ function MyPage() {
   const supabase = createClient();
 
   const { user, setUser } = useAuthStore();
-  const { data: likedTracksData } = useLikedTracks(user?.id);
   const { likes } = useLikes(user?.id);
+
+  const { data: likedTracksData } = useLikedTracks(user?.id, likes);
 
   const firstTrackAlbumImage = likedTracksData?.pages[0]?.tracks[0]?.album.images[0]?.url || "/twinify.png";
 
@@ -42,6 +43,8 @@ function MyPage() {
   useEffect(() => {
     fetchUser();
   }, [user]);
+
+  console.log("likes:", likes);
 
   return (
     <>
@@ -76,7 +79,7 @@ function MyPage() {
         {showProfileModal && <ProfileModal onClose={() => setShowProfileModal(false)} />}
         {showNicknameModal && <NicknameModal onClose={() => setShowNicknameModal(false)} />}
       </div>
-      {likes && <LikedTracksList />}
+      {likes && likes.length > 0 ? <LikedTracksList /> : <p className="mx-8 mt-16 p-6 border-dashed border border-purple-600 rounded-lg">좋아요 리스트가 비어 있습니다.</p>}
     </>
   );
 }
