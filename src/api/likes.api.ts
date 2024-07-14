@@ -2,7 +2,7 @@ import { Tables } from "@/types/supabase";
 
 class LikesAPI {
   async getUserLikes(userId: string): Promise<Tables<"likes">[]> {
-    const response = await fetch(`http://localhost:3000/api/likes?userId=${userId}`, {
+    const response = await fetch(`/api/likes?userId=${userId}`, {
       cache: "no-store",
       headers: {
         "Cache-Control": "no-cache",
@@ -17,7 +17,7 @@ class LikesAPI {
   }
 
   async addLike(userId: string, trackId: string): Promise<Tables<"likes">> {
-    const response = await fetch("http://localhost:3000/api/likes", {
+    const response = await fetch("/api/likes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, trackId }),
@@ -27,7 +27,7 @@ class LikesAPI {
   }
 
   async removeLike(userId: string, trackId: string): Promise<void> {
-    const response = await fetch(`http://localhost:3000/api/likes?userId=${userId}&trackId=${trackId}`, {
+    const response = await fetch(`/api/likes?userId=${userId}&trackId=${trackId}`, {
       method: "DELETE",
     });
     if (!response.ok) throw new Error("Failed to remove like");
