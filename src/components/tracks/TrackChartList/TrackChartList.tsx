@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 import api from "@/api/api";
-import Link from "next/link";
 import TrackList from "../TrackList/TrackList";
 
 const TRACKS_PER_PAGE = 10;
@@ -44,11 +43,7 @@ export default function TrackChartList() {
         <div className="mx-8 mt-16 p-6 border-dashed border border-purple-600 rounded-lg">
           <ul>
             {data?.pages.flatMap((page, pageIndex) =>
-              page.tracks.map((track, index) => (
-                <Link href={`track/${track.id}`} key={track.id}>
-                  <TrackList track={track} TRACKS_PER_PAGE={TRACKS_PER_PAGE} index={index} pageIndex={pageIndex} />
-                </Link>
-              )),
+              page.tracks.map((track, index) => <TrackList key={track.id} track={track} TRACKS_PER_PAGE={TRACKS_PER_PAGE} index={index} pageIndex={pageIndex} />),
             )}
           </ul>
           <div ref={ref} className="text-center">

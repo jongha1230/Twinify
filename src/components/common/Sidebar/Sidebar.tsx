@@ -9,7 +9,7 @@ function Sidebar() {
         <h2 className="text-brandPrimary text-center font-bold text-3xl md:text-4xl mb-8">Twinify</h2>
       </Link>
       <div className="my-collection">
-        <h6 className="text-sidebarSubtitle text-sm md:text-base mb-4">MY COLLECTION</h6>
+        <h3 className="text-sidebarSubtitle text-sm md:text-base mb-4">MY COLLECTION</h3>
         <ul className="mb-8 space-y-4 px-2">
           <li>
             <SidebarButton icon="/icons/playlist.png" title="플레이리스트" href="/" disabled />
@@ -29,7 +29,7 @@ function Sidebar() {
         </ul>
       </div>
       <div className="my-playlists">
-        <h6 className="text-sidebarSubtitle text-sm md:text-base mb-4">MY PLAYLISTS</h6>
+        <h3 className="text-sidebarSubtitle text-sm md:text-base mb-4">MY PLAYLISTS</h3>
         <ul className="space-y-4 px-2">
           <li>
             <SidebarButton href="/" title="Mixes and Radio" disabled />
