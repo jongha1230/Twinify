@@ -16,6 +16,7 @@ function TrackList({ track, pageIndex, TRACKS_PER_PAGE, index }: { track: Spotif
   };
 
   const handleHeartClick = (trackId: string, event: React.MouseEvent) => {
+    event.preventDefault();
     event.stopPropagation();
     if (isLiked(trackId)) {
       removeLike(trackId);
@@ -33,7 +34,7 @@ function TrackList({ track, pageIndex, TRACKS_PER_PAGE, index }: { track: Spotif
       </div>
       <span className="flex flex-col flex-grow items-center pr-20">{track.name}</span>
       <div className="flex flex-nowrap ml-auto">
-        <span className="cursor-pointer pr-4" onClick={e => handleHeartClick(track.id, e)}>
+        <span className="cursor-pointer pr-4 transition-transform duration-300 ease-in-out hover:scale-110" onClick={e => handleHeartClick(track.id, e)}>
           {isLiked(track.id) ? "❤️" : "🤍"}
         </span>
         <span>{formatDuration(track.duration_ms)}</span>

@@ -4,12 +4,11 @@ import { useLikes } from "@/lib/hooks/useLikes";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import CommentPage from "./_comments/page";
+import CommentPage from "./_comments/CommentPage";
 
 function MusicDetailPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [clickLike, setClickLike] = useState<boolean>(false);
   const [track, setTrack] = useState<SpotifyApi.TrackObjectFull | null>(null);
   const { user } = useAuthStore();
   const userId = user?.id;
@@ -57,15 +56,30 @@ function MusicDetailPage({ params }: { params: { id: string } }) {
               <h6>앨범명 - {track.album.name}</h6>
               <h6>{track.album.release_date}</h6>
             </div>
-            <span className="flex items-center cursor-pointer ml-auto mt-auto" onClick={e => handleHeartClick(track.id, e)}>
-              <p className="mr-1">좋아요</p> <span className="text-3xl">{isLiked(track.id) ? "❤️" : "🤍"}</span>
-            </span>
+            <button
+              className="flex items-center cursor-pointer ml-auto mt-auto bg-gray-700 rounded-full px-4 py-2 transition-all duration-300 ease-in-out border-b-4 border-gray-900 
+              hover:translate-y-[4px] active:translate-y-[10px] shadow-md hover:shadow-sm"
+              onClick={e => handleHeartClick(track.id, e)}
+            >
+              <p className="mr-2 text-white">좋아요</p>
+              <span className="text-2xl transition-transform duration-300 ease-in-out hover:scale-110 inline-block">{isLiked(track.id) ? "❤️" : "🤍"}</span>
+            </button>
           </section>
 
           <section>
             <h2 className="text-white text-2xl font-bold mb-5">미리 듣기</h2>
             {track.preview_url ? (
-              <audio muted controls playsInline loop ref={audioRef}>
+              <audio
+                controls
+                playsInline
+                loop
+                ref={audioRef}
+                onLoadedMetadata={() => {
+                  if (audioRef.current) {
+                    audioRef.current.volume = 0.3;
+                  }
+                }}
+              >
                 <source src={track.preview_url || undefined} type={"audio/mp3"} />
               </audio>
             ) : (

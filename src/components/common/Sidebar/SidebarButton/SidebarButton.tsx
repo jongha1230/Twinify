@@ -2,19 +2,14 @@ import { VariantProps, cva } from "class-variance-authority";
 import Image from "next/image";
 import Link from "next/link";
 
-const sidebarButtonVariants = cva(["flex", "items-center", "space-x-2", "w-full", "py-1", "transition-colors", "text-base"], {
+const sidebarButtonVariants = cva("flex items-center space-x-2 w-full py-1 text-base ", {
   variants: {
-    active: {
-      true: "bg-brandPrimary font-bold",
-      false: "",
-    },
     disabled: {
       true: "opacity-50 cursor-not-allowed",
-      false: "cursor-pointer",
+      false: "cursor-pointer transition-transform duration-300 ease-in-out hover:-translate-x-1",
     },
   },
   defaultVariants: {
-    active: false,
     disabled: false,
   },
 });
@@ -26,8 +21,8 @@ type SidebarButtonProps = {
   disabled?: boolean;
 } & VariantProps<typeof sidebarButtonVariants>;
 
-function SidebarButton({ icon, title, href, disabled = false, active }: SidebarButtonProps) {
-  const buttonClasses = sidebarButtonVariants({ active, disabled });
+function SidebarButton({ icon, title, href, disabled = false }: SidebarButtonProps) {
+  const buttonClasses = sidebarButtonVariants({ disabled });
 
   return (
     <Link href={href} className={buttonClasses}>

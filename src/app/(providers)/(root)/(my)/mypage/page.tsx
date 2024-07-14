@@ -18,7 +18,7 @@ function MyPage() {
   const { user, setUser } = useAuthStore();
   const { data: likedTracksData } = useLikedTracks(user?.id);
 
-  const firstTrackAlbumImage = likedTracksData?.pages[0]?.tracks[0]?.album.images[0]?.url || "/profileImg.png";
+  const firstTrackAlbumImage = likedTracksData?.pages[0]?.tracks[0]?.album.images[0]?.url || "/twinify.png";
 
   const handleProfileClick = () => {
     setShowProfileModal(true);
@@ -45,12 +45,21 @@ function MyPage() {
     <>
       <div className="flex flex-col relative pr-3">
         <div className="relative w-full h-64">
-          <Image src={firstTrackAlbumImage} alt="mainimg" fill className="object-cover" />
+          <Image
+            src={firstTrackAlbumImage}
+            alt="mainimg"
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 
+           (max-width: 768px) 100vw, 
+           (max-width: 1024px) 100vw, 
+           100vw"
+          />
         </div>
         <div className="flex justify-center items-center flex-col absolute top-1/2 left-1/2 transform translate-y-8 -translate-x-1/2 mb-10">
           <div className="relative">
             <div className="h-20 w-20">
-              <Image src={user?.profileImg || "/profileImg.png"} alt="profileImg" fill className="object-cover rounded-3xl" />
+              <Image src={user?.profileImg || "/twinify.png"} alt="profileImg" fill className="object-cover rounded-3xl" sizes="(max-width: 640px) 20vw, (max-width: 1024px) 10vw, 5vw" />
             </div>
             <div className="absolute bottom-0 right-0 hover:text-brandPrimary cursor-pointer">
               <HiPencilSquare onClick={handleProfileClick} />

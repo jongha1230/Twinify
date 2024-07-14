@@ -2,9 +2,7 @@
 
 import { useLikedTracks } from "@/lib/hooks/useLikedTracks";
 import { useLikes } from "@/lib/hooks/useLikes";
-import { formatDuration } from "@/lib/utils/formatDuration";
 import { useAuthStore } from "@/stores/useAuthStore";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -49,7 +47,7 @@ export default function LikedTracksList() {
           {data?.pages.flatMap((page, pageIndex) =>
             page.tracks?.map((track, index) => (
               <Link href={`track/${track.id}`} key={track.id}>
-                <TrackList track={track} index={index} pageIndex={pageIndex} />
+                <TrackList track={track} index={index} TRACKS_PER_PAGE={10} pageIndex={pageIndex} />
               </Link>
             )),
           )}

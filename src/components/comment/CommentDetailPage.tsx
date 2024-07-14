@@ -129,9 +129,13 @@ const CommentDetailPage = ({ comment, user }: { comment: Tables<"comments">; use
             </div>
           </div>
           <div>
-            <button onClick={enableEditing}>수정</button>
+            <button className="hover:scale-105" onClick={enableEditing}>
+              수정
+            </button>
             <span> | </span>
-            <button onClick={deleteHandler}>삭제</button>
+            <button className="hover:scale-105" onClick={deleteHandler}>
+              삭제
+            </button>
           </div>
         </section>
       )}
