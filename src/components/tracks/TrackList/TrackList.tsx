@@ -26,8 +26,8 @@ function TrackList({ track, pageIndex, TRACKS_PER_PAGE, index }: { track: Spotif
     }
   };
   return (
-    <li key={track.id} className={`px-8 py-3 flex items-center space-x-4 cursor-pointer hover:bg-gray-900`}>
-      <Link href={`track/${track.id}`}>
+    <li key={track.id} className={` px-8 py-3 hover:bg-gray-900`}>
+      <Link href={`track/${track.id}`} className="flex w-flex items-center space-x-4 cursor-pointer">
         <span>{pageIndex !== undefined && TRACKS_PER_PAGE !== undefined ? pageIndex * TRACKS_PER_PAGE + index + 1 : index + 1}</span>
         <Image src={track.album.images[2].url} alt={`${track.name} album cover`} width={52} height={52} />
         <div className="flex flex-col flex-grow max-w-40">
