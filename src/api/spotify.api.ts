@@ -10,47 +10,47 @@ class SpotifyAPI {
     this.clientId = process.env.SPOTIFY_CLIENT_ID || "";
     this.clientSecret = process.env.SPOTIFY_CLIENT_SECRET || "";
   }
-  // 토큰 받기
-  async getAccessToken(): Promise<string | null> {
-    if (this.accessToken && this.tokenExpirationTime && Date.now() < this.tokenExpirationTime) {
-      return this.accessToken;
-    }
-
+  // 토큰 재요청
+  async refreshToken(): Promise<void> {
     if (typeof window !== 'undefined') {
-      const response = await fetch('/api/spotify-token');
+      // 클라이언트 사이드에서는 API 라우트를 통해 토큰을 갱신
+      const response = await fetch('/api/spotify-token', { method: 'POST' });
       const data = await response.json();
       this.accessToken = data.token;
-      this.tokenExpirationTime = Date.now() + 3600 * 1000; 
-      if (!this.accessToken) {
-        throw new Error("Failed to obtain access token");
+      this.tokenExpirationTime = Date.now() + 3600 * 1000; // 1시간
+    } else {
+      // 서버 사이드에서는 직접 Spotify API를 호출
+      const auth = Buffer.from(`${this.clientId}:${this.clientSecret}`).toString("base64");
+      const response = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${auth}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "grant_type=client_credentials",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return this.accessToken;
+
+      const data = await response.json();
+      this.accessToken = data.access_token;
+      this.tokenExpirationTime = Date.now() + data.expires_in * 1000;
     }
-
-    const auth = Buffer.from(`${this.clientId}:${this.clientSecret}`).toString("base64");
-
-    const response = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${auth}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: "grant_type=client_credentials",
-    });
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-    const data = await response.json();
-    this.accessToken = data.access_token;
-    this.tokenExpirationTime = Date.now() + data.expires_in * 1000;
 
     if (!this.accessToken) {
       throw new Error("Failed to obtain access token");
     }
-
-    return this.accessToken;
   }
+
+  async getAccessToken(): Promise<string> {
+    if (!this.accessToken || !this.tokenExpirationTime || Date.now() >= this.tokenExpirationTime - 300000) { // 5분 전에 갱신
+      await this.refreshToken();
+    }
+    return this.accessToken!;
+  }
+
   // 플레이리스트 목록 불러오기
   async getChartTracks(
     offset: number = 0,
