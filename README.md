@@ -25,7 +25,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
       <td align="center"><img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/1-22-31-70.png"></td>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
-      <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
+      <td align="center"><img src="hhttps://cdn-static.zep.us/static/assets/baked-avartar-images/2-318-39-370.png"></td>
           <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
     </tr>
     <tr>
@@ -78,7 +78,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
   팀 프로젝트 발표<br>
   팀 프로젝트 시연 영상<br>
   <br>
-  <img src="https://github.com/erinmzo/pharmacymen/assets/110635641/d79d78a0-92fb-4ef3-babf-1b9aa40b8a00">
+  <img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/2-318-39-370.png">
   <br>
   <strong>최예진</strong><br>
   팀원<br><br>
