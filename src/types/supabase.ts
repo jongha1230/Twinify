@@ -31,7 +31,15 @@ export type Database = {
           trackId?: string
           userId?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "comments_userId_fkey"
+            columns: ["userId"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       likes: {
         Row: {

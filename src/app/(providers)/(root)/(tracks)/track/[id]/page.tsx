@@ -57,7 +57,7 @@ function MusicDetailPage({ params }: { params: { id: string } }) {
               <h6>{track.album.release_date}</h6>
             </div>
             <button
-              className="flex items-center w-[140px] cursor-pointer ml-auto mt-auto bg-gray-700 rounded-full px-4 py-2 transition-all duration-300 ease-in-out border-b-4 border-gray-900 
+              className="flex items-center justify-center w-[140px] cursor-pointer ml-auto mt-auto bg-gray-700 rounded-full pl-4 pr-2 py-2 transition-all duration-300 ease-in-out border-b-4 border-gray-900 
               hover:translate-y-[4px] active:translate-y-[10px] shadow-md hover:shadow-sm"
               onClick={e => handleHeartClick(track.id, e)}
             >

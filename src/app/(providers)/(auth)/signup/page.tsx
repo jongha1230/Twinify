@@ -14,6 +14,13 @@ type SignupForm = {
   nickname: string;
 };
 
+type SignupError = {
+  email: string;
+  password: string;
+  checkPassword: string;
+  nickname: string;
+};
+
 function SignupPage() {
   const [values, setValues] = useState<SignupForm>({
     email: "",
@@ -21,6 +28,7 @@ function SignupPage() {
     checkPassword: "",
     nickname: "",
   });
+  const [errors, setErrors] = useState<Partial<SignupError>>({});
 
   const { isLoding, error, user } = useAuthStore();
 
@@ -36,17 +44,29 @@ function SignupPage() {
   };
 
   const validateForm = () => {
-    if (!values.email || !values.password || !values.checkPassword || !values.nickname) {
-      return true;
+    const newErrors: Partial<SignupError> = {};
+    if (!values.email || !values.checkPassword || !values.nickname) {
+      newErrors.email = "이메일을 입력하세요.";
+    }
+    if (!values.password) {
+      newErrors.password = "비밀번호를 입력하세요.";
+    }
+    if (!values.checkPassword) {
+      newErrors.checkPassword = "비밀번호 확인창을 입력하세요.";
+    }
+    if (!values.nickname) {
+      newErrors.nickname = "닉네임을 입력하세요.";
     }
     if (values.password !== values.checkPassword) {
-      return true;
+      newErrors.checkPassword = "비밀번호가 일치하지 않습니다.";
     }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
+    if (!validateForm()) {
       return;
     }
     try {
@@ -78,18 +98,21 @@ function SignupPage() {
           </div>
           <input type="text" className="border-none outline-none text-black" placeholder="닉네임" value={values.nickname} onChange={e => handleChange("nickname", e.target.value)}></input>
         </div>
+        {errors.nickname && <p className="text-red-500 text-xs ">{errors.nickname}</p>}
         <div className="flex items-center rounded-lg border-solid border-2 border-[#D9D9D9] hover:border-black w-[25rem] h-[4.375rem] p-3 gap-1">
           <div className="relative w-7 h-7">
             <Image src={"/icons/mail.svg"} alt={`icon`} fill sizes="20" className="object-contain" />
           </div>
           <input type="text" className="border-none outline-none text-black" placeholder="이메일" value={values.email} onChange={e => handleChange("email", e.target.value)}></input>
         </div>
+        {errors.email && <p className="text-red-500 text-xs ">{errors.email}</p>}
         <div className="flex items-center rounded-lg border-solid border-2 border-[#D9D9D9] hover:border-black w-[25rem] h-[4.375rem] p-3 gap-1">
           <div className="relative w-7 h-7">
             <Image src={"/icons/key.svg"} alt={`icon`} fill sizes="20" className="object-contain" />
           </div>
           <input type="password" className="border-none outline-none text-black" placeholder="비밀번호" value={values.password} onChange={e => handleChange("password", e.target.value)}></input>
         </div>
+        {errors.password && <p className="text-red-500 text-xs ">{errors.password}</p>}
         <div className="flex items-center rounded-lg border-solid border-2 border-[#D9D9D9] hover:border-black w-[25rem] h-[4.375rem] p-3 gap-1">
           <div className="relative w-7 h-7">
             <Image src={"/icons/key.svg"} alt={`icon`} fill sizes="20" className="object-contain" />
@@ -102,6 +125,7 @@ function SignupPage() {
             onChange={e => handleChange("checkPassword", e.target.value)}
           ></input>
         </div>
+        {errors.checkPassword && <p className="text-red-500 text-xs ">{errors.checkPassword}</p>}
         <button className="rounded-lg text-black text-xl font-bold w-[25rem] h-[3.625rem] bg-[#6BD700] mt-[8px]">회원가입</button>
       </form>
       <p className="mt-[60px] text-black">By continuing you indicate that you read and agreed to the Terms of Use</p>

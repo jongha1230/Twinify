@@ -7,16 +7,23 @@ import { Tables } from "@/types/supabase";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 
+interface CommentWithUser extends Tables<"comments"> {
+  users: {
+    nickname: string | null;
+    profileImg: string | null;
+  };
+}
+
 const CommentPage = ({ id }: { id: string }) => {
   const trackId = id;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { user } = useAuthStore();
 
-  const { data: comments } = useQuery({
+  const { data: comments } = useQuery<CommentWithUser[]>({
     queryKey: ["comments", id],
     queryFn: () => selectComment(id),
   });
-
+  console.log("유저", user);
   const queryClient = useQueryClient();
 
   const addMutation = useMutation({
@@ -67,7 +74,17 @@ const CommentPage = ({ id }: { id: string }) => {
         </div>
       </form>
       {/* 댓글 리스트 */}
-      {user && comments?.map((comment: Tables<"comments">) => <CommentDetailPage key={comment.id} comment={comment} user={user} />)}
+      {comments?.map((comment: CommentWithUser) => (
+        <CommentDetailPage
+          key={comment.id}
+          comment={comment}
+          commentUser={{
+            nickname: comment.users.nickname,
+            profileImg: comment.users.profileImg,
+          }}
+          currentUser={user}
+        />
+      ))}
     </article>
   );
 };

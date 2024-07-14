@@ -5,8 +5,16 @@ import { NextRequest, NextResponse } from "next/server";
 // 댓글 가져오기
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const id = searchParams.get("trackId");
-  const { data, error } = await createClient().from("comments").select("*").eq("trackId", id).order("createdAt", { ascending: false });
+  const trackId = searchParams.get("trackId");
+
+
+  const { data, error } = await createClient().from("comments").select(`
+      *,
+      users:userId (
+        nickname,
+        profileImg
+      )
+    `).eq("trackId", trackId).order("createdAt", { ascending: false });
 
   if (error) {
     console.error("댓글을 가져오는 도중 에러발생:", error.message);

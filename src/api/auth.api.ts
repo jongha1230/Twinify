@@ -68,23 +68,27 @@ export class AuthAPI {
     async checkUser() {
         try {
             const response = await fetch("/api/auth/check", {method: "GET"});
+            console.log("Response status:", response.status);
+             console.log("Response headers:", response.headers);
             if (response.status === 204) {
-                // 사용자가 로그인하지 않은 상태
                 this.setUser(null);
                 return null;
             }
-            if(!response.ok) {throw new Error('유저 정보 확인 오류 발생')}
-            const {user} = await response.json()
-            
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || '유저 정보 확인 오류 발생');
+            }
+            const {user} = await response.json();
             const fullUser = await this.getFullUserInfo(user);
-        
             this.setUser(fullUser);
-            return user
+            return user;
         } catch (error) {
+            console.error("checkUser error:", error);
             this.setUser(null);
             return null;
         }
     }
+
     // 추가정보 받기
     async getUserInfo(): Promise<{ nickname: string; image_url: string }> {
         try {
