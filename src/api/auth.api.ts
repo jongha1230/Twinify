@@ -61,7 +61,7 @@ export class AuthAPI {
             if(!response.ok) {throw new Error('로그아웃 실패')}
             this.setUser(null);
         } catch (error) {
-            console.error('로그아웃 오류 발생', error)
+            throw error;
         }
     }
     // 로그인 확인
@@ -76,7 +76,7 @@ export class AuthAPI {
             this.setUser(fullUser);
             return user
         } catch (error) {
-            console.error('유저 정보 확인 중 오류 발생', error)
+            throw error;
         }
     }
     // 추가정보 받기
@@ -90,8 +90,7 @@ export class AuthAPI {
             throw new Error('사용자 정보 가져오기 실패');
           }
           return await response.json();
-        } catch (error) {
-          console.error('사용자 정보 가져오기 중 오류 발생', error);
+        } catch (error) {          
           throw error;
         }
       }

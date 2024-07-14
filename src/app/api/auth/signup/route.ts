@@ -18,12 +18,10 @@ export async function POST(requset: NextRequest) {
     },},
     })
     if (signUpError) {
-      console.error('Supabase signUp error:', signUpError);
       return NextResponse.json({ error: signUpError.message }, { status: 400 });
     }
     
     if (!user) {
-      console.warn('Supabase signUp returned null data');
       return NextResponse.json({ message: "Sign up process initiated, but no data returned" }, { status: 200 });
     }
 

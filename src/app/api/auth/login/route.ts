@@ -12,11 +12,9 @@ export async function POST(requset: NextRequest) {
     password,
     })
     if (signInError) {
-      console.error('Supabase signIn error:', signInError);
       return NextResponse.json({ error: signInError.message }, { status: 400 });
     }
     if (!user) {
-      console.warn('Supabase signIn returned null data');
       return NextResponse.json({ message: "Sign in process initiated, but no data returned" }, { status: 200 });
     }
 
