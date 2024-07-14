@@ -1,5 +1,5 @@
 "use client";
-import CommentDetailPage from "@/components/comment/page";
+import CommentDetailPage from "@/components/comment/CommentDetailPage";
 import { insertComment, selectComment } from "@/lib/utils/comments/commentData";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { createClient } from "@/supabase/client";
@@ -60,7 +60,9 @@ const CommentPage = ({ id }: { id: string }) => {
           <p className="text-white font-bold mb-4">{user?.nickname}</p>
           <textarea className="bg-surfaceDark text-white resize-none w-full" placeholder="노래의 소감을 작성해주세요 :)" ref={textareaRef} />
           <div className="flex justify-end">
-            <button className="bg-[#A6A6A6] rounded-md pt-2 pb-2 pl-6 pr-6">등록</button>
+            <button className="bg-[#A6A6A6] rounded-md pt-2 pb-2 pl-6 pr-6 transition-all duration-300 ease-in-out hover:translate-y-1 active:translate-y-2 hover:shadow-md border-b-4 border-[#858585]">
+              등록
+            </button>
           </div>
         </div>
       </form>

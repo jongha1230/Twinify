@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/stores/useAuthStore";
 import { createClient } from "@/supabase/client";
-import { useState, FC, useEffect } from "react";
+import Image from "next/image";
+import { FC, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 interface ProfileModalProps {
@@ -66,7 +67,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ onClose }) => {
             변경할 이미지를 선택해주세요.
             <div className="flex justify-center text-center items-center">
               {profileImage ? (
-                <img src={profileImage} alt="프로필 이미지 미리보기" className="w-64 h-64 object-cover rounded-xl" />
+                <Image src={profileImage} alt="프로필 이미지 미리보기" width={256} height={256} className=" object-cover rounded-xl" />
               ) : (
                 <div className="border-dashed border-brandPrimary border-2 w-64 h-12 rounded-xl flex items-center justify-center cursor-pointer">이미지 추가하기</div>
               )}

@@ -36,7 +36,7 @@ function Header() {
       console.error("로그아웃 중 오류 발생:", error);
     }
   };
-  console.log(user);
+
   return (
     <header className="px-8 py-4 flex items-center justify-end bg-black relative">
       <Search />
@@ -44,7 +44,7 @@ function Header() {
         {user ? (
           <div className="relative mr-16" ref={dropdownRef}>
             <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center space-x-2">
-              <Image src="/defaultProfile.webp" alt="User avatar" width={32} height={32} className="rounded-full" />
+              <Image src={user?.profileImg || "/twinify.png"} alt="User avatar" width={32} height={32} className="rounded-full" />
               <span className="text-white">{user.nickname}</span>
               <svg
                 className={`transition-transform transform ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
@@ -58,7 +58,7 @@ function Header() {
               </svg>
             </button>
             {isDropdownOpen && (
-              <div className="absolute left-0 mt-4 w-48 bg-gray-800 rounded-md shadow-lg">
+              <div className="absolute left-0 mt-4 w-48 bg-gray-800 rounded-md shadow-lg z-50">
                 <ul className="py-1">
                   <li>
                     <Link href="/mypage" className="block px-4 py-2 text-sm text-white hover:bg-gray-700">

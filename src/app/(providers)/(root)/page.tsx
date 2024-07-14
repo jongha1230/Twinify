@@ -10,7 +10,7 @@ export default async function MainPage() {
   return (
     <div className="flex-1 flex flex-col">
       <div className="flex-1 min-h-[calc(100vh-200px)] p-6">
-        <TopTracks tracks={tracks.slice(0, 3)} />
+        <TopTracks tracks={tracks?.slice(0, 3)} />
         <TopTrackList tracks={tracks} />
       </div>
     </div>
