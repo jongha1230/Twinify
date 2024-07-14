@@ -76,7 +76,8 @@ export class AuthAPI {
             this.setUser(fullUser);
             return user
         } catch (error) {
-            throw error;
+            this.setUser(null);
+            return null;
         }
     }
     // 추가정보 받기
