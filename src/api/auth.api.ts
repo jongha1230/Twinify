@@ -68,6 +68,11 @@ export class AuthAPI {
     async checkUser() {
         try {
             const response = await fetch("/api/auth/check", {method: "GET"});
+            if (response.status === 204) {
+                // 사용자가 로그인하지 않은 상태
+                this.setUser(null);
+                return null;
+            }
             if(!response.ok) {throw new Error('유저 정보 확인 오류 발생')}
             const {user} = await response.json()
             
