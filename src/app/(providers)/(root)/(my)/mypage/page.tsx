@@ -2,6 +2,7 @@
 
 import LikedTracksList from "@/components/tracks/LikesTrackList/LikesTrackList";
 import { useLikedTracks } from "@/lib/hooks/useLikedTracks";
+import { useLikes } from "@/lib/hooks/useLikes";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { createClient } from "@/supabase/client";
 import Image from "next/image";
@@ -17,6 +18,7 @@ function MyPage() {
 
   const { user, setUser } = useAuthStore();
   const { data: likedTracksData } = useLikedTracks(user?.id);
+  const { likes } = useLikes(user?.id);
 
   const firstTrackAlbumImage = likedTracksData?.pages[0]?.tracks[0]?.album.images[0]?.url || "/twinify.png";
 
@@ -74,7 +76,7 @@ function MyPage() {
         {showProfileModal && <ProfileModal onClose={() => setShowProfileModal(false)} />}
         {showNicknameModal && <NicknameModal onClose={() => setShowNicknameModal(false)} />}
       </div>
-      <LikedTracksList />
+      {likes && <LikedTracksList />}
     </>
   );
 }
