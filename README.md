@@ -22,7 +22,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
   <table>
     <tr>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/d79d78a0-92fb-4ef3-babf-1b9aa40b8a00"></td>
-      <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
+      <td align="center"><img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/1-22-31-70.png"></td>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
@@ -34,7 +34,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
       <td align="center">박민서</td>
       <td align="center">남수빈</td>
       <td align="center">최예진</td>
-      <td align="center">최예진</td>
+      <td align="center">유수지</td>
     </tr>
   </table>
 </div>
@@ -52,7 +52,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
   검색 기능 구현 <br>
   README 작성<br>
   <br>
-  <img src="https://github.com/erinmzo/pharmacymen/assets/110635641/d79d78a0-92fb-4ef3-babf-1b9aa40b8a00">
+  <img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/1-22-31-70.png">
   <br>
   <strong>임종하</strong><br>
   팀원<br><br>
