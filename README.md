@@ -23,10 +23,10 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
     <tr>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/d79d78a0-92fb-4ef3-babf-1b9aa40b8a00"></td>
       <td align="center"><img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/1-22-31-70.png"></td>
+      <td align="center"><img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/4-267-17-39.png"></td>
       <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
-      <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
-      <td align="center"><img src="hhttps://cdn-static.zep.us/static/assets/baked-avartar-images/2-318-39-370.png"></td>
-          <td align="center"><img src="https://github.com/erinmzo/pharmacymen/assets/110635641/dd2ae193-df3d-417f-b0f2-c4ce6473e079"></td>
+      <td align="center"><img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/2-318-39-370.png"></td>
+      <td align="center"><img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/10-613-33-637.png"></td>
     </tr>
     <tr>
       <td align="center">이성찬</td>
@@ -62,7 +62,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
   좋아요 리스트 구현<br>
   PPT 작성<br>
   <br>
-  <img src="https://github.com/erinmzo/pharmacymen/assets/110635641/d79d78a0-92fb-4ef3-babf-1b9aa40b8a00">
+  <img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/4-267-17-39.png">
   <br>
   <strong>박민서</strong><br>
   팀원<br><br>
@@ -85,7 +85,7 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
   <strong>상세 페이지</strong><br>
   코멘트 CRUD<br>
   팀 프로젝트 시연 영상<br><br>
-    <img src="https://github.com/erinmzo/pharmacymen/assets/110635641/d79d78a0-92fb-4ef3-babf-1b9aa40b8a00">
+    <img src="https://cdn-static.zep.us/static/assets/baked-avartar-images/10-613-33-637.png">
   <br>
   <strong>유수지</strong><br>
   팀원<br><br>
