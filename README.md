@@ -123,127 +123,55 @@ twinify는 사용자가 좋아하는 음악 정보를 공유하고 개인 맞춤
 <pre>
 📦src
  ┣ 📂api
- ┃ ┣ 📜api.ts
- ┃ ┣ 📜auth.api.ts
- ┃ ┣ 📜likes.api.ts
- ┃ ┗ 📜spotify.api.ts
  ┣ 📂app
  ┃ ┣ 📂(providers)
  ┃ ┃ ┣ 📂(auth)
  ┃ ┃ ┃ ┣ 📂login
- ┃ ┃ ┃ ┃ ┗ 📜page.tsx
  ┃ ┃ ┃ ┣ 📂signup
- ┃ ┃ ┃ ┃ ┗ 📜page.tsx
- ┃ ┃ ┃ ┗ 📜layout.tsx
  ┃ ┃ ┣ 📂(root)
  ┃ ┃ ┃ ┣ 📂(my)
  ┃ ┃ ┃ ┃ ┗ 📂mypage
- ┃ ┃ ┃ ┃ ┃ ┣ 📜NicknameModal.tsx
- ┃ ┃ ┃ ┃ ┃ ┣ 📜page.tsx
- ┃ ┃ ┃ ┃ ┃ ┗ 📜ProfileModal.tsx
  ┃ ┃ ┃ ┣ 📂(tracks)
  ┃ ┃ ┃ ┃ ┣ 📂list
- ┃ ┃ ┃ ┃ ┃ ┗ 📜page.tsx
  ┃ ┃ ┃ ┃ ┣ 📂search
- ┃ ┃ ┃ ┃ ┃ ┗ 📜page.tsx
  ┃ ┃ ┃ ┃ ┣ 📂track
  ┃ ┃ ┃ ┃ ┃ ┗ 📂[id]
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂_comments
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜page.tsx
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜page.tsx
  ┃ ┃ ┃ ┃ ┣ 📂_data
- ┃ ┃ ┃ ┃ ┃ ┗ 📜data.json
- ┃ ┃ ┃ ┃ ┣ 📜page.tsx
- ┃ ┃ ┃ ┃ ┗ 📜_data.zip
- ┃ ┃ ┃ ┣ 📜layout.tsx
- ┃ ┃ ┃ ┗ 📜page.tsx
- ┃ ┃ ┗ 📜layout.tsx
  ┃ ┣ 📂api
  ┃ ┃ ┣ 📂auth
  ┃ ┃ ┃ ┣ 📂check
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┃ ┣ 📂login
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┃ ┣ 📂logout
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┃ ┣ 📂signup
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┃ ┗ 📂user-info
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┣ 📂likes
- ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┣ 📂spotify-token
- ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┗ 📂tracks
  ┃ ┃ ┃ ┣ 📂comment
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┃ ┃ ┣ 📂[id]
- ┃ ┃ ┃ ┃ ┗ 📜route.ts
- ┃ ┃ ┃ ┗ 📜route.ts
- ┃ ┣ 📜favicon.ico
- ┃ ┣ 📜globals.css
- ┃ ┗ 📜layout.tsx
  ┣ 📂components
  ┃ ┣ 📂comment
- ┃ ┃ ┗ 📜page.tsx
  ┃ ┣ 📂common
  ┃ ┃ ┣ 📂Button
- ┃ ┃ ┃ ┣ 📜Button.tsx
- ┃ ┃ ┃ ┗ 📜index.ts
  ┃ ┃ ┣ 📂Header
- ┃ ┃ ┃ ┣ 📜Header.tsx
- ┃ ┃ ┃ ┗ 📜index.ts
  ┃ ┃ ┣ 📂Search
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜Search.tsx
  ┃ ┃ ┗ 📂Sidebar
  ┃ ┃ ┃ ┣ 📂SidebarButton
- ┃ ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┃ ┗ 📜SidebarButton.tsx
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜Sidebar.tsx
  ┃ ┣ 📂SearchResults
- ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┗ 📜SearchResults.tsx
  ┃ ┗ 📂tracks
  ┃ ┃ ┣ 📂LikesTrackList
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜LikesTrackList.tsx
  ┃ ┃ ┣ 📂TopTrackList
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜TopTrackList.tsx
  ┃ ┃ ┣ 📂TopTracks
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜TopTracks.tsx
  ┃ ┃ ┣ 📂TrackChartList
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜TrackChartList.tsx
  ┃ ┃ ┗ 📂TrackList
- ┃ ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┃ ┗ 📜TrackList.tsx
  ┣ 📂contexts
- ┃ ┣ 📜ClientUserProvider.tsx
- ┃ ┗ 📜UserContext.tsx
  ┣ 📂lib
  ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜useLikedTracks.ts
- ┃ ┃ ┣ 📜useLikes.ts
- ┃ ┃ ┗ 📜useSearch.ts
  ┃ ┗ 📂utils
  ┃ ┃ ┣ 📂comments
- ┃ ┃ ┃ ┣ 📜commentData.ts
- ┃ ┃ ┃ ┗ 📜formatCommentTime.ts
- ┃ ┃ ┣ 📜formatDuration.ts
- ┃ ┃ ┗ 📜spotifyService.ts
  ┣ 📂providers
- ┃ ┗ 📜providers.tsx
  ┣ 📂stores
- ┃ ┗ 📜useAuthStore.ts
  ┣ 📂supabase
- ┃ ┣ 📜client.ts
- ┃ ┣ 📜middleware.ts
- ┃ ┗ 📜server.ts
  ┣ 📂types
- ┃ ┗ 📜supabase.ts
- ┗ 📜middleware.ts
 </pre>
