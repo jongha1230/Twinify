@@ -30,7 +30,7 @@ function SignupPage() {
   });
   const [errors, setErrors] = useState<Partial<SignupError>>({});
 
-  const { isLoding, error, user } = useAuthStore();
+  const { isLoading: isLoding, error, user } = useAuthStore();
 
   const router = useRouter();
   useEffect(() => {
