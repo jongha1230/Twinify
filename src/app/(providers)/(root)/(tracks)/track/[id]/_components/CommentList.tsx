@@ -1,11 +1,12 @@
 "use client";
-import CommentDetailPage from "@/components/comment/CommentDetailPage";
+
 import { insertComment, selectComment } from "@/lib/utils/comments/commentData";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { createClient } from "@/supabase/client";
 import { Tables } from "@/types/supabase";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
+import CommentDetail from "./comment/CommentDetail";
 
 interface CommentWithUser extends Tables<"comments"> {
   users: {
@@ -14,7 +15,7 @@ interface CommentWithUser extends Tables<"comments"> {
   };
 }
 
-const CommentPage = ({ id }: { id: string }) => {
+const CommentList = ({ id }: { id: string }) => {
   const trackId = id;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { user } = useAuthStore();
@@ -75,7 +76,7 @@ const CommentPage = ({ id }: { id: string }) => {
       </form>
       {/* 댓글 리스트 */}
       {comments?.map((comment: CommentWithUser) => (
-        <CommentDetailPage
+        <CommentDetail
           key={comment.id}
           comment={comment}
           commentUser={{
@@ -89,4 +90,4 @@ const CommentPage = ({ id }: { id: string }) => {
   );
 };
 
-export default CommentPage;
+export default CommentList;

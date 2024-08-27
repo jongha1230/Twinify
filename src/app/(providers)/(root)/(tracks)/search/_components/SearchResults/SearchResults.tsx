@@ -3,7 +3,7 @@
 import { useSearchTracks } from "@/lib/hooks/useSearch";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import TrackList from "../tracks/TrackList";
+import TrackList from "../../../../../../../components/tracks/TrackList";
 
 const TRACKS_PER_PAGE = 10; // 페이지당 트랙 수
 

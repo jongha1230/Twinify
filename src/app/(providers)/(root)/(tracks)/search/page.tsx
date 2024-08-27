@@ -1,4 +1,4 @@
-import SearchResults from "@/components/SearchResults";
+import SearchResults from "@/app/(providers)/(root)/(tracks)/search/_components/SearchResults";
 
 export default function SearchPage({ searchParams }: { searchParams: { keyword: string } }) {
   const query = searchParams.keyword || "";

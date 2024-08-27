@@ -4,7 +4,7 @@ import { useLikes } from "@/lib/hooks/useLikes";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import CommentPage from "./_comments/CommentPage";
+import CommentList from "./_components/CommentList";
 
 function MusicDetailPage({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -88,7 +88,7 @@ function MusicDetailPage({ params }: { params: { id: string } }) {
           </section>
         </article>
       )}
-      <CommentPage id={id} />
+      <CommentList id={id} />
     </main>
   );
 }
