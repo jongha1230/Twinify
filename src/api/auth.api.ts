@@ -1,5 +1,4 @@
 import { useAuthStore } from "@/stores/useAuthStore";
-import { createClient } from "@/supabase/client";
 import { Tables } from "@/types/supabase";
 
 export class AuthAPI {
@@ -36,24 +35,29 @@ export class AuthAPI {
         }
     }  
     // 로그인
-    async signIn(email: string, password: string): Promise<Tables<"users">> {
+    async signIn(email: string, password: string): Promise<{ status: string; user?: Tables<"users">; message?: string }> {
         try {
-            const supabase = createClient()
-            const data= {email, password}
-
-            const response = await fetch("/api/auth/login", { method: "POST", headers: { 'Content-Type': 'application/json', }, body: JSON.stringify(data), credentials: 'include', });
-    
-        const {user} = await response.json()
-        
-        const fullUser = await this.getFullUserInfo(user);
-        
+          const data = { email, password };
+      
+          const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+            credentials: 'include',
+          });
+      
+          const result = await response.json();
+      
+          if (result.status === 'success' && result.user) {
+            const fullUser = await this.getFullUserInfo(result.user);
             this.setUser(fullUser);
-    
-        return user
+          }
+      
+          return result;
         } catch (error) {
-            throw new Error(`로그인 도중 오류 발생${(error as Error).message}`);
+          throw new Error(`로그인 도중 오류 발생: ${(error as Error).message}`);
         }
-    } 
+      }
     // 로그아웃
     async signOut() {
         try {

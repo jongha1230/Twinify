@@ -18,7 +18,7 @@ interface Props {
   currentUser: Tables<"users"> | null;
 }
 
-const CommentDetailPage = ({ comment, currentUser, commentUser }: Props) => {
+const CommentDetail = ({ comment, currentUser, commentUser }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -148,4 +148,4 @@ const CommentDetailPage = ({ comment, currentUser, commentUser }: Props) => {
   );
 };
 
-export default CommentDetailPage;
+export default CommentDetail;

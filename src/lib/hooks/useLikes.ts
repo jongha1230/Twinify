@@ -16,9 +16,10 @@ export function useLikes(userId: string | undefined) {
 
   const addLikeMutation = useMutation<Tables<"likes">, Error, string>({
     mutationFn: (trackId: string) => {
-      if (!userId) throw new Error("No user ID");
+      if (!userId) throw new Error("로그인이 필요합니다");
       return api.likes.addLike(userId, trackId)},
     onMutate: async trackId => {
+      if (!userId) return;
       await queryClient.cancelQueries({ queryKey: ["likes", userId] });
       const previousLikes = queryClient.getQueryData<Tables<"likes">[]>(["likes", userId]);
 
@@ -41,9 +42,10 @@ export function useLikes(userId: string | undefined) {
 
   const removeLikeMutation = useMutation<void, Error, string>({
     mutationFn: (trackId: string) => {
-      if (!userId) throw new Error("No user ID");
+      if (!userId) throw new Error("로그인이 필요합니다");
       return api.likes.removeLike(userId, trackId)},
     onMutate: async trackId => {
+      if (!userId) return;
       await queryClient.cancelQueries({ queryKey: ["likes", userId] });
 
       const previousLikes = queryClient.getQueryData<Tables<"likes">[]>(["likes", userId]);

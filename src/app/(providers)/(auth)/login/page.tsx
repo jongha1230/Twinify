@@ -26,7 +26,7 @@ function LoginPage() {
 
   const [errors, setErrors] = useState<Partial<LoginError>>({});
 
-  const { isLoding, error, user } = useAuthStore();
+  const { isLoading, error, user } = useAuthStore();
 
   const router = useRouter();
   useEffect(() => {
@@ -58,16 +58,21 @@ function LoginPage() {
     }
     try {
       const { email, password } = values;
-      await api.auth.signIn(email, password);
-      console.log(`로그인 시도 성공`);
-      router.push("/");
+      const response = await api.auth.signIn(email, password);
+      if (response.status === "200") {
+        console.log(`로그인 성공`);
+        router.push("/"); // 로그인 성공 시에만 리다이렉션
+      } else {
+        console.error(`로그인 실패: 상태 코드 ${response.status}`);
+        setErrors({ general: "로그인에 실패했습니다. 다시 시도해 주세요." });
+      }
     } catch (error) {
-      console.error(`로그인 도중 오류 발생${(error as Error).message}`);
-      setErrors({ general: "존재하지 않는 회원입니다. 회원가입을 해주세요." });
+      console.error(`로그인 도중 오류 발생: ${(error as Error).message}`);
+      setErrors({ general: "로그인 중 오류가 발생했습니다. 다시 시도해 주세요." });
     }
   };
 
-  if (isLoding) return <div>로그인 중...</div>;
+  if (isLoading) return <div>로그인 중...</div>;
   if (error) return <div> 에러: {error} </div>;
 
   return (
@@ -92,9 +97,6 @@ function LoginPage() {
         {errors.general && (
           <div className="w-[25rem] mb-[20px]">
             <p className="text-red-500 text-sm">{errors.general}</p>
-            <Link href="/signup" className="text-blue-500 underline">
-              회원가입 하러 가기
-            </Link>
           </div>
         )}
         <button className="rounded-lg text-black text-xl font-bold w-[25rem] h-[3.625rem] bg-[#6BD700] mb-[8px]">로그인</button>
